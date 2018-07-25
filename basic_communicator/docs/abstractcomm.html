@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- abstractcomm.cpp -->
+  <title>AbstractComm Class | Qt  5.7</title>
+</head>
+<body>
+<link href="style/online.css"                 rel="stylesheet" type="text/css">                 <div class="content"> <div class="context"> <a href="index.html">Home</a> <li>AbstractComm</li>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#protected-slots">Protected Slots</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">AbstractComm Class</h1>
+<!-- $$$AbstractComm-brief -->
+<p>串口通信的接口类，所有具体实现串口通信/网络通讯的相关类都应该继承此类并实现其中的纯虚方法。 <a href="#details">More...</a></p>
+<!-- @@@AbstractComm -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="comfullduplex.html">ComFullDuplex</a>, <a href="comhalfduplex.html">ComHalfDuplex</a>, <a href="commbluetooth.html">CommBluetooth</a>, <a href="commnetwork.html">CommNetwork</a>, and <a href="virtualcom.html">VirtualCom</a></p>
+</td></tr></table></div><ul>
+<li><a href="abstractcomm-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="properties"></a>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn"><b><a href="abstractcomm.html#started-prop">started</a></b> : bool</li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#isStarted">isStarted</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#setStarted">setStarted</a></b>(const bool <i>started</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#setState">setState</a></b>(const CommState &amp;<i>state</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> CommState &amp;</td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#state">state</a></b>()</td></tr>
+</table></div>
+<a name="public-slots"></a>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#close">close</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#init">init</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#openComm">openComm</a></b>(const QString &amp;<i>name</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#setCommProperty">setCommProperty</a></b>(const QString &amp;<i>key</i>, const QVariant &amp;<i>value</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#write">write</a></b>(const QByteArray &amp;<i>rawdata</i>) = 0</td></tr>
+</table></div>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#codeMayMessed">codeMayMessed</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#recvLine">recvLine</a></b>(const QByteArray &amp;<i>data</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#recvRawData">recvRawData</a></b>(const QByteArray &amp;<i>data</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#sendData">sendData</a></b>(const QByteArray &amp;<i>data</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#stateChanged">stateChanged</a></b>(const CommState &amp;<i>serial</i>)</td></tr>
+</table></div>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#AbstractComm">AbstractComm</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#close-1">close</a></b>(QIODevice *<i>device</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#writeData">writeData</a></b>(QIODevice *<i>device</i>, const QByteArray &amp;<i>rawdata</i>)</td></tr>
+</table></div>
+<a name="protected-slots"></a>
+<h2 id="protected-slots">Protected Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractcomm.html#onRead">onRead</a></b>() = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$AbstractComm-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><b class="redFont"><code>\author</code></b>BriFuture <b class="redFont"><code>\date</code></b> 2018.07.20</p>
+<p>串口通信的接口类，所有具体实现串口通信/网络通讯的相关类都应该继承此类并实现其中的纯虚方法。</p>
+<p>@date 2018.04.26</p>
+<p>The Interface of serial communication, all implementation of concrete serial communication should be the subclass of this pure virtual class and implement all the virtual methods in this class.</p>
+<p>当串口的实现较多时，实现该类的接口时，将实现类的构造函数声明为 Q_INVOKABLE， 并在相应的工厂类中进行注册，便于使用工厂方法构造子类。</p>
+<p>When implementing this interface, it is recommonded that the constructor of subclass is decorated with the MACRO Q_INVOKABLE and register it into Qt's MOC system, then it will be easy to use factory to construct subclass. But the port is exclusive from other threads, so be careful when rewrite copy constructor if using Q_DELCARE_METATYPE to declare subclass as metatype.</p>
+<p>@date 2018.05.09</p>
+<p>因为该接口的子类受其它串口管理类的管理，并且当前程序设计是将接口的子类放入子线程中单独执行， 所以实现子类时需要特别注意，子类的所有成员（QSerialPort，QTimer之类）都需要放在 init 函数中 进行初始化，否则 Qt 的多线程执行时就会报错。移除具有工厂类作用的api</p>
+<p>Because the subclasses of this interface is managed by other COM Manager, and the subclasses is designed to execute into a sub thread, when realizing subclass of this interface should remember that all member of certain subclass should be initialized in Function init, otherwise the Qt's multi-thread mechansim would raise error. Apis that effect like factory are removed now。</p>
+</div>
+<p><b>See also </b><a href="commmanager.html">CommManager</a>.</p>
+<!-- @@@AbstractComm -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$started-prop$$$isStarted$$$setStartedconstbool -->
+<h3 class="fn" id="started-prop"><a name="started-prop"></a><span class="name">started</span> : <span class="type">bool</span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> virtual bool </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="abstractcomm.html#isStarted">isStarted</a></b></span>()</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> virtual void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="abstractcomm.html#setStarted">setStarted</a></b></span>(const bool <i>started</i>)</td></tr>
+</table></div>
+<!-- @@@started -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$AbstractComm[overload1]$$$AbstractComm -->
+<h3 class="fn" id="AbstractComm"><a name="AbstractComm"></a><code>[protected] </code>AbstractComm::<span class="name">AbstractComm</span>()</h3>
+<p>Default constructs an instance of AbstractComm.</p><!-- @@@AbstractComm -->
+<!-- $$$close[overload1]$$$close -->
+<h3 class="fn" id="close"><a name="close"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractComm::<span class="name">close</span>()</h3>
+<!-- @@@close -->
+<!-- $$$close$$$closeQIODevice* -->
+<h3 class="fn" id="close-1"><a name="close-1"></a><code>[protected] </code><span class="type">void</span> AbstractComm::<span class="name">close</span>(<span class="type">QIODevice</span> *<i>device</i>)</h3>
+<p>默认的关闭串口/网络操作 提供统一的关闭操作，供子类调用，若子类对关闭操作没有特殊的要求，那么不需要重写关闭操作</p>
+<!-- @@@close -->
+<!-- $$$codeMayMessed[overload1]$$$codeMayMessed -->
+<h3 class="fn" id="codeMayMessed"><a name="codeMayMessed"></a><code>[signal] </code><span class="type">void</span> AbstractComm::<span class="name">codeMayMessed</span>()</h3>
+<!-- @@@codeMayMessed -->
+<!-- $$$init[overload1]$$$init -->
+<h3 class="fn" id="init"><a name="init"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractComm::<span class="name">init</span>()</h3>
+<p>初始化串口/网络，设计串口都是工作在子线程中，因此需要通过信号槽方式， 在子线程中运行初始化函数</p>
+<!-- @@@init -->
+<!-- $$$isStarted -->
+<h3 class="fn" id="isStarted"><a name="isStarted"></a><code>[virtual] </code><span class="type">bool</span> AbstractComm::<span class="name">isStarted</span>()</h3>
+<p>返回当前串口/网络设备是否正在运行的标志位</p>
+<p>example:</p>
+<pre class="cpp">AbstractComm <span class="operator">*</span>ac <span class="operator">=</span> <span class="keyword">new</span> ImplComm;
+ac<span class="operator">-</span><span class="operator">&gt;</span>openDevice(<span class="string">&quot;device&quot;</span>);  <span class="comment">// 打开设备</span>
+ac<span class="operator">-</span><span class="operator">&gt;</span>isStarted();  <span class="comment">// true</span>
+ac<span class="operator">-</span><span class="operator">&gt;</span>close();
+ac<span class="operator">-</span><span class="operator">&gt;</span>isStarted();  <span class="comment">// false</span></pre>
+<p><b>Note:</b> Getter function for property <a href="abstractcomm.html#started-prop">started</a>. </p><!-- @@@isStarted -->
+<!-- $$$onRead[overload1]$$$onRead -->
+<h3 class="fn" id="onRead"><a name="onRead"></a><code>[pure virtual protected slot] </code><span class="type">void</span> AbstractComm::<span class="name">onRead</span>()</h3>
+<p>读取操作，若运行在子线程的循环中，需要显式调用 Qt 的事件分发， 避免子线程无法关闭。</p>
+<!-- @@@onRead -->
+<!-- $$$openComm[overload1]$$$openCommconstQString& -->
+<h3 class="fn" id="openComm"><a name="openComm"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractComm::<span class="name">openComm</span>(const <span class="type">QString</span> &amp;<i>name</i>)</h3>
+<p>根据串口/网络名称，打开新的串口/网络</p>
+<p>example:</p>
+<pre class="cpp">AbstractComm <span class="operator">*</span>cfd <span class="operator">=</span> <span class="keyword">new</span> ImplComm1;
+cfd<span class="operator">-</span><span class="operator">&gt;</span>openComm(<span class="string">&quot;COM1&quot;</span>);  <span class="comment">// 打开串口</span></pre>
+<!-- @@@openComm -->
+<!-- $$$recvLine[overload1]$$$recvLineconstQByteArray& -->
+<h3 class="fn" id="recvLine"><a name="recvLine"></a><code>[signal] </code><span class="type">void</span> AbstractComm::<span class="name">recvLine</span>(const <span class="type">QByteArray</span> &amp;<i>data</i>)</h3>
+<p>从串口/网络等设备中接收到的一行数据。 行结束符为 <a href="abstractcomm.html#LineSeparator-var">LineSeparator</a></p>
+<!-- @@@recvLine -->
+<!-- $$$recvRawData[overload1]$$$recvRawDataconstQByteArray& -->
+<h3 class="fn" id="recvRawData"><a name="recvRawData"></a><code>[signal] </code><span class="type">void</span> AbstractComm::<span class="name">recvRawData</span>(const <span class="type">QByteArray</span> &amp;<i>data</i>)</h3>
+<p>从串口/网络等设备中接收到的数据，该数据是一行数据中的一部分。</p>
+<!-- @@@recvRawData -->
+<!-- $$$sendData[overload1]$$$sendDataconstQByteArray& -->
+<h3 class="fn" id="sendData"><a name="sendData"></a><code>[signal] </code><span class="type">void</span> AbstractComm::<span class="name">sendData</span>(const <span class="type">QByteArray</span> &amp;<i>data</i>)</h3>
+<p>向界面发送数据</p>
+<!-- @@@sendData -->
+<!-- $$$setCommProperty[overload1]$$$setCommPropertyconstQString&constQVariant& -->
+<h3 class="fn" id="setCommProperty"><a name="setCommProperty"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractComm::<span class="name">setCommProperty</span>(const <span class="type">QString</span> &amp;<i>key</i>, const <span class="type">QVariant</span> &amp;<i>value</i>)</h3>
+<p>键和值需要参考 QSerialPort 的 Property 设置串口属性（波特率，停止位等）、网络属性（地址）等</p>
+<p>example: <a href="abstractcomm.html">AbstractComm</a> *cfd = new ImplComm1; cfd-&gt;setCommProperty(&quot;baudRate&quot;, 2400); // 设置波特率为 2400 cfd-&gt;setCommProperty(&quot;dataBit&quot;, 0); // 设置数据位为 8</p>
+<!-- @@@setCommProperty -->
+<!-- $$$setStarted -->
+<h3 class="fn" id="setStarted"><a name="setStarted"></a><code>[virtual] </code><span class="type">void</span> AbstractComm::<span class="name">setStarted</span>(const <span class="type">bool</span> <i>started</i>)</h3>
+<p>设置标志位，表示串口/网络设备是否可以运行（由控制器设置，但实现类可忽略该标志位）</p>
+<p>example:</p>
+<pre class="cpp">AbstractComm <span class="operator">*</span>ac <span class="operator">=</span> <span class="keyword">new</span> ImplComm;
+ac<span class="operator">-</span><span class="operator">&gt;</span>setStarted(<span class="keyword">true</span>);  <span class="comment">// 设置标志位</span>
+ac<span class="operator">-</span><span class="operator">&gt;</span>isStarted();  <span class="comment">// true</span></pre>
+<p><b>Note: </b>you need to have the flag set when opening a device by default. or the manager may not set the flag to false.</p><pre class="cpp">AbstractComm <span class="operator">*</span>ac <span class="operator">=</span> <span class="keyword">new</span> ImplComm;
+ac<span class="operator">-</span><span class="operator">&gt;</span>openDevice(<span class="string">&quot;COM1&quot;</span>);
+ac<span class="operator">-</span><span class="operator">&gt;</span>isStarted();  <span class="comment">// true</span></pre>
+<p><b>Note:</b> Setter function for property <a href="abstractcomm.html#started-prop">started</a>. </p><p><b>See also </b><a href="abstractcomm.html#isStarted">isStarted</a>() and AbstractComm::openDevice.</p>
+<!-- @@@setStarted -->
+<!-- $$$setState[overload1]$$$setStateconstCommState& -->
+<h3 class="fn" id="setState"><a name="setState"></a><span class="type">void</span> AbstractComm::<span class="name">setState</span>(const <span class="type">CommState</span> &amp;<i>state</i>)</h3>
+<p>设置状态，注意，所有的子类都共享抽象类里的 static 内存区域， 对某个子类的 state 进行修改，会影响到其它所有的子类。</p>
+<p>example:</p>
+<pre class="cpp">AbstractComm <span class="operator">*</span>cfd <span class="operator">=</span> <span class="keyword">new</span> ImplComm1;
+
+CommState s1 <span class="operator">=</span> cfd<span class="operator">-</span><span class="operator">&gt;</span>state();
+qDebug() <span class="operator">&lt;</span><span class="operator">&lt;</span> s1; <span class="comment">// { &quot;COM1&quot;, 9600, false, &quot;&quot; }</span>
+
+s1<span class="operator">.</span>baudRate <span class="operator">=</span> <span class="number">38400</span>;
+cfd<span class="operator">-</span><span class="operator">&gt;</span>setState(s1);
+
+AbstractComm <span class="operator">*</span>chd <span class="operator">=</span> <span class="keyword">new</span> ImplComm1;
+CommState s2 <span class="operator">=</span> cfd<span class="operator">-</span><span class="operator">&gt;</span>state();
+qDebug() <span class="operator">&lt;</span><span class="operator">&lt;</span> s2; <span class="comment">// { &quot;COM1&quot;, 38400, false, &quot;&quot; }</span></pre>
+<p><b>See also </b><a href="abstractcomm.html#state">AbstractComm::state</a>().</p>
+<!-- @@@setState -->
+<!-- $$$state[overload1]$$$state -->
+<h3 class="fn" id="state"><a name="state"></a><span class="type">CommState</span> &amp;AbstractComm::<span class="name">state</span>()</h3>
+<p><b>See also </b><a href="abstractcomm.html#setState">setState</a>().</p>
+<!-- @@@state -->
+<!-- $$$stateChanged[overload1]$$$stateChangedconstCommState& -->
+<h3 class="fn" id="stateChanged"><a name="stateChanged"></a><code>[signal] </code><span class="type">void</span> AbstractComm::<span class="name">stateChanged</span>(const <span class="type">CommState</span> &amp;<i>serial</i>)</h3>
+<!-- @@@stateChanged -->
+<!-- $$$write[overload1]$$$writeconstQByteArray& -->
+<h3 class="fn" id="write"><a name="write"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractComm::<span class="name">write</span>(const <span class="type">QByteArray</span> &amp;<i>rawdata</i>)</h3>
+<p>This is a funciton that actually performs the communication it receives raw string and send it into serial port 将文本数据写入到串口 原始的文本数据</p>
+<!-- @@@write -->
+<!-- $$$writeData[overload1]$$$writeDataQIODevice*constQByteArray& -->
+<h3 class="fn" id="writeData"><a name="writeData"></a><code>[protected] </code><span class="type">void</span> AbstractComm::<span class="name">writeData</span>(<span class="type">QIODevice</span> *<i>device</i>, const <span class="type">QByteArray</span> &amp;<i>rawdata</i>)</h3>
+<p>默认的写串口操作</p>
+<p>在 rawdata 末尾添加回车换行符, 将 rawdata 发送至串口</p>
+<p>example:</p>
+<pre class="cpp"><span class="comment">// Assume that content of a command is &quot;#ALARM=1*ff&quot;</span>
+<span class="comment">// in class ImplComm</span>
+writeData(m_device<span class="operator">,</span> content);  <span class="comment">// then the content will be send into the device (MCU) by SerialPort/Network</span></pre>
+<!-- @@@writeData -->
+</div>
+</div> </div></body>
+</html>

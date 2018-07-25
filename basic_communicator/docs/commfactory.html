@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- commfactory.cpp -->
+  <title>CommFactory Class | Qt  5.7</title>
+</head>
+<body>
+<link href="style/online.css"                 rel="stylesheet" type="text/css">                 <div class="content"> <div class="context"> <a href="index.html">Home</a> <li>CommFactory</li>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">CommFactory Class</h1>
+<!-- $$$CommFactory-brief -->
+<p>The <a href="commfactory.html">CommFactory</a> class 通讯器工厂类，增加抽象通讯类的子类时，在工厂类中添加相应的模式和 构造实现类的例化。 主要作用是构造 <a href="abstractcomm.html">AbstractComm</a> 的实例以及返回相应的属性 <a href="#details">More...</a></p>
+<!-- @@@CommFactory -->
+<ul>
+<li><a href="commfactory-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#CommFactory">CommFactory</a></b>(QObject *<i>parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#CommFactory-1">CommFactory</a></b>(const CommFactory &amp;<i>cf</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#addComm">addComm</a></b>(const QMetaObject &amp;<i>metaObject</i>, const CommInfo &amp;<i>info</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QString </td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#commClassName">commClassName</a></b>(const QString &amp;<i>type</i>, const bool <i>halfDuplex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QList&lt;CommInfo&gt; </td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#commInfo">commInfo</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> AbstractComm *</td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#createComm">createComm</a></b>(const QString &amp;<i>className</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#supportHalfDuplex">supportHalfDuplex</a></b>(const QString &amp;<i>type</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVector&lt;QMetaObject&gt; </td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#usableComm">usableComm</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#operator-eq">operator=</a></b>(const CommFactory &amp;<i>cf</i>)</td></tr>
+</table></div>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> CommFactory *</td><td class="memItemRight bottomAlign"><b><a href="commfactory.html#defaultFactory">defaultFactory</a></b>()</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$CommFactory-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><b class="redFont"><code>\author</code></b>BriFuture <b class="redFont"><code>\date</code></b> 2018.07.19</p>
+<p>The <a href="commfactory.html">CommFactory</a> class 通讯器工厂类，增加抽象通讯类的子类时，在工厂类中添加相应的模式和 构造实现类的例化。 主要作用是构造 <a href="abstractcomm.html">AbstractComm</a> 的实例以及返回相应的属性</p>
+<p>Factory class, when adding new subclass of BaseComm, add the proper mode and realization into this class.</p>
+<p>使用 Comm::factory 或 <a href="commfactory.html#defaultFactory">CommFactory::defaultFactory</a> 获得默认的工厂对象指针</p>
+<p>example:</p>
+<pre class="cpp">CommFactory <span class="operator">*</span>cf1 <span class="operator">=</span> Comm<span class="operator">::</span>factory;
+CommFactory <span class="operator">*</span>cf2 <span class="operator">=</span> CommFactory<span class="operator">::</span>defaultFactory();
+qDebug() <span class="operator">&lt;</span><span class="operator">&lt;</span> (cf1 <span class="operator">=</span><span class="operator">=</span> cf2); <span class="comment">// true</span>
+AbstractComm <span class="operator">*</span>chd <span class="operator">=</span> cf1<span class="operator">-</span><span class="operator">&gt;</span>createComm(<span class="string">&quot;CommHalfDuplex&quot;</span>);  <span class="comment">// chd is an instance of ComHalfDuplex</span></pre>
+<p>使用工厂类时不要直接构造新的工厂对象，否则没有通讯器的模版工厂将只能构造 <a href="comfullduplex.html">ComFullDuplex</a> 的对象</p>
+<p>example:</p>
+<pre class="cpp">CommFactory <span class="operator">*</span>cf3 <span class="operator">=</span> <span class="keyword">new</span> CommFactory;
+AbstractComm <span class="operator">*</span>ac <span class="operator">=</span> cf3<span class="operator">-</span><span class="operator">&gt;</span>createComm(<span class="string">&quot;CommHalfDuplex&quot;</span>);  <span class="comment">// ac is an instance of ComFullDuplex instead of ComHalfDuplex</span></pre>
+<p>在其他组件中添加新的通讯器示例：</p>
+<pre class="cpp">Comm<span class="operator">::</span>factory<span class="operator">-</span><span class="operator">&gt;</span>add(ImplComm<span class="operator">::</span>staticMetaObject<span class="operator">,</span> ImplComm<span class="operator">::</span>commInfo);
+<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+Comm<span class="operator">::</span>manager<span class="operator">-</span><span class="operator">&gt;</span>resetMode(<span class="string">&quot;ImplComm&quot;</span>);  <span class="comment">// Communicator has been changed to ImplComm</span></pre>
+</div>
+<!-- @@@CommFactory -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$CommFactory[overload1]$$$CommFactoryQObject* -->
+<h3 class="fn" id="CommFactory"><a name="CommFactory"></a>CommFactory::<span class="name">CommFactory</span>(<span class="type">QObject</span> *<i>parent</i> = 0)</h3>
+<p>Default constructs an instance of CommFactory.</p><!-- @@@CommFactory -->
+<!-- $$$CommFactory$$$CommFactoryconstCommFactory& -->
+<h3 class="fn" id="CommFactory-1"><a name="CommFactory-1"></a>CommFactory::<span class="name">CommFactory</span>(const <span class="type"><a href="commfactory.html#CommFactory">CommFactory</a></span> &amp;<i>cf</i>)</h3>
+<p>Copy constructor.</p><!-- @@@CommFactory -->
+<!-- $$$addComm[overload1]$$$addCommconstQMetaObject&constCommInfo& -->
+<h3 class="fn" id="addComm"><a name="addComm"></a><span class="type">void</span> CommFactory::<span class="name">addComm</span>(const <span class="type">QMetaObject</span> &amp;<i>metaObject</i>, const <span class="type">CommInfo</span> &amp;<i>info</i>)</h3>
+<p>CommFactory::addComm <b class="redFont"><code>\param</code></b> metaObject <b class="redFont"><code>\param</code></b> info 添加一个可用的 <a href="abstractcomm.html">AbstractComm</a> 元对象，存放相应的信息，用于构造 <a href="abstractcomm.html">AbstractComm</a> 实现类</p>
+<p>example:</p>
+<pre class="cpp">CommFactory factory;
+factory<span class="operator">.</span>addComm(ComFullDuplex<span class="operator">::</span>staticMetaObject<span class="operator">,</span> ComFullDuplex<span class="operator">::</span>commInfo);  <span class="comment">// factory can generate an Object points to ComFullDuplex</span>
+factory<span class="operator">.</span>createComm(<span class="string">&quot;CommFactory&quot;</span>);</pre>
+<p><b>See also </b><a href="commfactory.html#createComm">CommFactory::createComm</a>(const QString &amp;).</p>
+<!-- @@@addComm -->
+<!-- $$$commClassName[overload1]$$$commClassNameconstQString&constbool -->
+<h3 class="fn" id="commClassName"><a name="commClassName"></a>const <span class="type">QString</span> CommFactory::<span class="name">commClassName</span>(const <span class="type">QString</span> &amp;<i>type</i>, const <span class="type">bool</span> <i>halfDuplex</i>)</h3>
+<p>根据通讯器类型和工作模式（是否为半双工）返回相应的通讯器类名 类名在构造通讯器时中用到</p>
+<p>example:</p>
+<pre class="cpp">factory <span class="operator">=</span> <span class="keyword">new</span> ComFactory;
+factory<span class="operator">.</span>addComm(ComHalfDuplex<span class="operator">::</span>staticMetaObject<span class="operator">,</span> ComHalfDuplex<span class="operator">::</span>commInfo);  <span class="comment">// type: SerialPort, mode: half duplex</span>
+<span class="type">QString</span> className <span class="operator">=</span> factory<span class="operator">.</span>commClassName(<span class="string">&quot;SerialPort&quot;</span><span class="operator">,</span> <span class="keyword">true</span>); <span class="comment">// ComHalfDuplex</span></pre>
+<!-- @@@commClassName -->
+<!-- $$$commInfo[overload1]$$$commInfo -->
+<h3 class="fn" id="commInfo"><a name="commInfo"></a><span class="type">QList</span>&lt;<span class="type">CommInfo</span>&gt; CommFactory::<span class="name">commInfo</span>()</h3>
+<p>提供接口用于显示可用的通讯模式 返回的 comm 对象用于界面显示 m_commMap 包含的键值对中，键位类名，值为对应的 commInfo</p>
+<p>example: 假设 m_commMap 中只存有 <a href="comfullduplex.html">ComFullDuplex</a> 这个类</p>
+<pre class="cpp"><span class="type">QMapIterator</span><span class="operator">&lt;</span><span class="type">QString</span><span class="operator">,</span> CommInfo<span class="operator">&gt;</span> it(m_commMap);
+<span class="keyword">while</span>(it<span class="operator">.</span>hasNext()) {
+    it<span class="operator">.</span>next();
+    qDebug() <span class="operator">&lt;</span><span class="operator">&lt;</span> it<span class="operator">.</span>key();           <span class="comment">// output: &quot;ComFullDuplex&quot;</span>
+    qDebug() <span class="operator">&lt;</span><span class="operator">&lt;</span> it<span class="operator">.</span>value()<span class="operator">.</span>type;    <span class="comment">// output: &quot;SerialPort&quot;</span>
+    qDebug() <span class="operator">&lt;</span><span class="operator">&lt;</span> it<span class="operator">.</span>value()<span class="operator">.</span>desc;    <span class="comment">// output: &quot;Full Duplex&quot;</span>
+}</pre>
+<!-- @@@commInfo -->
+<!-- $$$createComm[overload1]$$$createCommconstQString& -->
+<h3 class="fn" id="createComm"><a name="createComm"></a><span class="type"><a href="abstractcomm.html">AbstractComm</a></span> *CommFactory::<span class="name">createComm</span>(const <span class="type">QString</span> &amp;<i>className</i>)</h3>
+<p>根据 className 例化相应的通讯实现类</p>
+<p>目前支持的通讯类模式有</p>
+<ul>
+<li>串口全双工模式</li>
+<li>串口半双工模式</li>
+<li>网络模式（全双工）</li>
+<li>测试模式</li>
+</ul>
+<p>className 对应的是 <a href="abstractcomm.html">AbstractComm</a> 子类的类名，根据类名构造子类对象， 若子类对象此前已经构造过，那么将会从保存的列表中直接取出子类对象的指针</p>
+<pre class="cpp">CommFactory  <span class="operator">*</span>cf  <span class="operator">=</span> Comm<span class="operator">::</span>factory;
+AbstractComm <span class="operator">*</span>ac  <span class="operator">=</span> cf<span class="operator">-</span><span class="operator">&gt;</span>createComm(<span class="string">&quot;ComFullDuplex&quot;</span>);
+AbstractComm <span class="operator">*</span>ac2 <span class="operator">=</span> cf<span class="operator">-</span><span class="operator">&gt;</span>createComm( <span class="string">&quot;ComHalfDuplex&quot;</span> );
+AbstractComm <span class="operator">*</span>ac3 <span class="operator">=</span> cf<span class="operator">-</span><span class="operator">&gt;</span>createComm(<span class="string">&quot;ComFullDuplex&quot;</span>);
+Q_ASSERT( ac  <span class="operator">!</span><span class="operator">=</span> <span class="number">0</span> );   <span class="comment">// true</span>
+Q_ASSERT( ac2 <span class="operator">!</span><span class="operator">=</span> <span class="number">0</span> );   <span class="comment">// true</span>
+Q_ASSERT( ac2 <span class="operator">!</span><span class="operator">=</span> ac );  <span class="comment">// true</span>
+Q_ASSERT( ac3 <span class="operator">!</span><span class="operator">=</span> <span class="number">0</span> );   <span class="comment">// true</span>
+Q_ASSERT( ac3 <span class="operator">=</span><span class="operator">=</span> ac );  <span class="comment">// true</span>
+Q_ASSERT( ac3 <span class="operator">!</span><span class="operator">=</span> ac2 ); <span class="comment">// true</span></pre>
+<p><b>See also </b><a href="comm.html">Comm</a>.</p>
+<!-- @@@createComm -->
+<!-- $$$defaultFactory[overload1]$$$defaultFactory -->
+<h3 class="fn" id="defaultFactory"><a name="defaultFactory"></a><code>[static] </code><span class="type"><a href="commfactory.html#CommFactory">CommFactory</a></span> *CommFactory::<span class="name">defaultFactory</span>()</h3>
+<p>CommFactory::defaultFactory <b class="redFont"><code>\return</code></b> 返回默认的工程对象</p>
+<p><b>Note: </b>也可以使用 Comm::factory 对象指针作为默认的工厂</p><pre class="cpp">CommFactory <span class="operator">*</span>f <span class="operator">=</span> CommFactory<span class="operator">::</span>defaultFactory();  <span class="comment">// f is a pointer to default Factory</span></pre>
+<!-- @@@defaultFactory -->
+<!-- $$$supportHalfDuplex[overload1]$$$supportHalfDuplexconstQString& -->
+<h3 class="fn" id="supportHalfDuplex"><a name="supportHalfDuplex"></a><span class="type">bool</span> CommFactory::<span class="name">supportHalfDuplex</span>(const <span class="type">QString</span> &amp;<i>type</i>)</h3>
+<p>根据通讯器的类型 type（SerialPort，Network） 判断其是否支持半双工模式 用于界面，方便选择具体的通讯器</p>
+<p>example:</p>
+<pre class="cpp">CommFactory factory;
+factory<span class="operator">.</span>addComm(ComHalfDuplex<span class="operator">::</span>staticMetaObject<span class="operator">,</span> ComHalfDuplex<span class="operator">::</span>commInfo);  <span class="comment">// type: SerialPort</span>
+bool shd <span class="operator">=</span> factory<span class="operator">.</span>supportHalfDuplex(<span class="string">&quot;SerialPort&quot;</span>);   <span class="comment">// true</span>
+bool shd2 <span class="operator">=</span> factory<span class="operator">.</span>supportHalfDuplex(<span class="string">&quot;Network&quot;</span>);     <span class="comment">// false</span></pre>
+<!-- @@@supportHalfDuplex -->
+<!-- $$$usableComm[overload1]$$$usableComm -->
+<h3 class="fn" id="usableComm"><a name="usableComm"></a><span class="type">QVector</span>&lt;<span class="type">QMetaObject</span>&gt; CommFactory::<span class="name">usableComm</span>() const</h3>
+<p>CommFactory::usableComm <b class="redFont"><code>\return</code></b> 返回可用的元对象列表，用于动态构造对象</p>
+<!-- @@@usableComm -->
+<!-- $$$operator=[overload1]$$$operator=constCommFactory& -->
+<h3 class="fn" id="operator-eq"><a name="operator-eq"></a><span class="type">void</span> CommFactory::<span class="name">operator=</span>(const <span class="type"><a href="commfactory.html#CommFactory">CommFactory</a></span> &amp;<i>cf</i>)</h3>
+<p>Copy-assignment operator.</p><!-- @@@operator= -->
+</div>
+</div> </div></body>
+</html>

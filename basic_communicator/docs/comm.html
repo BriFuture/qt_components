@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- commglobal.cpp -->
+  <title>Communication Layer Related | Qt  5.7</title>
+</head>
+<body>
+<link href="style/online.css"                 rel="stylesheet" type="text/css">                 <div class="content"> <div class="context"> <a href="index.html">Home</a> <li>Communication Layer Related</li>
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Communication Layer Related</h1>
+<span class="subtitle"></span>
+<!-- $$$comm-description -->
+<div class="descr"> <a name="details"></a>
+<p>通讯层的相关类</p>
+</div>
+<!-- @@@comm -->
+<div class="table"><table class="annotated">
+<tr class="odd topAlign"><td class="tblName"><p><a href="abstractcomm.html">AbstractComm</a></p></td><td class="tblDescr"><p>串口通信的接口类，所有具体实现串口通信/网络通讯的相关类都应该继承此类并实现其中的纯虚方法。</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="abstractprotocol.html">AbstractProtocol</a></p></td><td class="tblDescr"><p>用于 Communicator 层的通信接口</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="comfullduplex.html">ComFullDuplex</a></p></td><td class="tblDescr"><p>管理 SerialPort，保证该程序所有类中使用的 SerialPort 对象都是统一的。 串口接收到的数据和上位机程序发送到下位机的指令都通过该类传递。</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="comhalfduplex.html">ComHalfDuplex</a></p></td><td class="tblDescr"><p>半双工工作模式的串口</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="commbluetooth.html">CommBluetooth</a></p></td><td class="tblDescr"><p>蓝牙通讯模块，由于生产环境中不支持蓝牙通讯，因此该模块暂时不可用</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="commfactory.html">CommFactory</a></p></td><td class="tblDescr"><p>通讯器工厂类，增加抽象通讯类的子类时，在工厂类中添加相应的模式和 构造实现类的例化。 主要作用是构造 AbstractComm 的实例以及返回相应的属性</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="commmanager.html">CommManager</a></p></td><td class="tblDescr"><p>通讯管理器，传递查询语句和结果管理串口子线程的作用，封装了多线程，向外部提供统一的 接口，起到类似中介的作用，将 AbstractProtocol 和实际执行串口/网络访问的类（子线程中）聚合起来，方便迭代更新</p></td></tr>
+<tr class="even topAlign"><td class="tblName"><p><a href="commnetwork.html">CommNetwork</a></p></td><td class="tblDescr"><p>网络连接方式，接收服务器数据或将数据发送到相应的服务器端口中</p></td></tr>
+<tr class="odd topAlign"><td class="tblName"><p><a href="virtualcom.html">VirtualCom</a></p></td><td class="tblDescr"><p>虚拟串口用于模拟下位机发送数据</p></td></tr>
+</table></div>
+</div> </div></body>
+</html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- comfullduplex.cpp -->
+  <title>ComFullDuplex Class | Qt  5.7</title>
+</head>
+<body>
+<link href="style/online.css"                 rel="stylesheet" type="text/css">                 <div class="content"> <div class="context"> <a href="index.html">Home</a> <li>ComFullDuplex</li>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">ComFullDuplex Class</h1>
+<!-- $$$ComFullDuplex-brief -->
+<p>管理 SerialPort，保证该程序所有类中使用的 SerialPort 对象都是统一的。 串口接收到的数据和上位机程序发送到下位机的指令都通过该类传递。 <a href="#details">More...</a></p>
+<!-- @@@ComFullDuplex -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="abstractcomm.html">AbstractComm</a></td></tr></table></div><ul>
+<li><a href="comfullduplex-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Q_INVOKABLE </td><td class="memItemRight bottomAlign"><b><a href="comfullduplex.html#ComFullDuplex">ComFullDuplex</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="comfullduplex.html#dtor.ComFullDuplex">~ComFullDuplex</a></b>()</td></tr>
+</table></div>
+<ul>
+<li class="fn">4 public functions inherited from <a href="abstractcomm.html#public-functions">AbstractComm</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn">1 property inherited from <a href="abstractcomm.html#properties">AbstractComm</a></li>
+<li class="fn">5 public slots inherited from <a href="abstractcomm.html#public-slots">AbstractComm</a></li>
+<li class="fn">5 signals inherited from <a href="abstractcomm.html#signals">AbstractComm</a></li>
+<li class="fn">2 protected functions inherited from <a href="abstractcomm.html#protected-functions">AbstractComm</a></li>
+<li class="fn">1 protected slot inherited from <a href="abstractcomm.html#protected-slots">AbstractComm</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$ComFullDuplex-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><b class="redFont"><code>\author</code></b>BriFuture <b class="redFont"><code>\date</code></b> 2018.05.04</p>
+<p>管理 SerialPort，保证该程序所有类中使用的 SerialPort 对象都是统一的。 串口接收到的数据和上位机程序发送到下位机的指令都通过该类传递。</p>
+<p><b>Warning:</b> 该类只负责接收和发送数据（管理上位机和下位机的通信）不会关心数据是否有错误。</p>
+<p><a href="comfullduplex.html">ComFullDuplex</a> is a util to swap information with QT program and SerialPort, All data will be passed to here. For convenience, the <a href="comfullduplex.html">ComFullDuplex</a> is integreted with protocol, then it will conduct all commond using NMEA_0183 protocol, and it is obiligate to dispatch all parsed data.</p>
+</div>
+<!-- @@@ComFullDuplex -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$ComFullDuplex[overload1]$$$ComFullDuplex -->
+<h3 class="fn" id="ComFullDuplex"><a name="ComFullDuplex"></a><span class="type">Q_INVOKABLE</span> ComFullDuplex::<span class="name">ComFullDuplex</span>()</h3>
+<p>Default constructs an instance of ComFullDuplex.</p><!-- @@@ComFullDuplex -->
+<!-- $$$~ComFullDuplex[overload1]$$$~ComFullDuplex -->
+<h3 class="fn" id="dtor.ComFullDuplex"><a name="dtor.ComFullDuplex"></a>ComFullDuplex::<span class="name">~ComFullDuplex</span>()</h3>
+<p>Destroys the instance of ComFullDuplex.</p><!-- @@@~ComFullDuplex -->
+</div>
+</div> </div></body>
+</html>

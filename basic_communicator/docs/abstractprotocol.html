@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- abstractprotocol.cpp -->
+  <title>AbstractProtocol Class | Qt  5.7</title>
+</head>
+<body>
+<link href="style/online.css"                 rel="stylesheet" type="text/css">                 <div class="content"> <div class="context"> <a href="index.html">Home</a> <li>AbstractProtocol</li>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">AbstractProtocol Class</h1>
+<!-- $$$AbstractProtocol-brief -->
+<p>用于 Communicator 层的通信接口 <a href="#details">More...</a></p>
+<!-- @@@AbstractProtocol -->
+<ul>
+<li><a href="abstractprotocol-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#AbstractProtocol">AbstractProtocol</a></b>(QObject *<i>parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#clearRemainCmd">clearRemainCmd</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#enabled">enabled</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual const QByteArray </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#firstQueryContent">firstQueryContent</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#priority">priority</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual const int </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#remainCmdCount">remainCmdCount</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#setEnabled">setEnabled</a></b>(bool <i>enabled</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#setPriority">setPriority</a></b>(int <i>priority</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#startTiming">startTiming</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual const int </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#totalCmdCount">totalCmdCount</a></b>() = 0</td></tr>
+</table></div>
+<a name="public-slots"></a>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#processData">processData</a></b>(const QByteArray &amp;<i>data</i>, const int <i>index</i> = 0) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#stopQuery">stopQuery</a></b>() = 0</td></tr>
+</table></div>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#skipCurrentQuery">skipCurrentQuery</a></b>()</td></tr>
+</table></div>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> QByteArray </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#xorCODE">xorCODE</a></b>(const QByteArray &amp;<i>ba</i>)</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$AbstractProtocol-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><b class="redFont"><code>\author</code></b>BriFuture</p>
+<p>用于 Communicator 层的通信接口</p>
+</div>
+<!-- @@@AbstractProtocol -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$AbstractProtocol[overload1]$$$AbstractProtocolQObject* -->
+<h3 class="fn" id="AbstractProtocol"><a name="AbstractProtocol"></a>AbstractProtocol::<span class="name">AbstractProtocol</span>(<span class="type">QObject</span> *<i>parent</i> = 0)</h3>
+<p>Default constructs an instance of AbstractProtocol.</p><!-- @@@AbstractProtocol -->
+<!-- $$$clearRemainCmd[overload1]$$$clearRemainCmd -->
+<h3 class="fn" id="clearRemainCmd"><a name="clearRemainCmd"></a><code>[pure virtual] </code><span class="type">void</span> AbstractProtocol::<span class="name">clearRemainCmd</span>()</h3>
+<p>* *</p>
+<p>清空等待查询的命令</p>
+<!-- @@@clearRemainCmd -->
+<!-- $$$enabled[overload1]$$$enabled -->
+<h3 class="fn" id="enabled"><a name="enabled"></a><span class="type">bool</span> AbstractProtocol::<span class="name">enabled</span>() const</h3>
+<p><b>See also </b><a href="abstractprotocol.html#setEnabled">setEnabled</a>().</p>
+<!-- @@@enabled -->
+<!-- $$$firstQueryContent[overload1]$$$firstQueryContent -->
+<h3 class="fn" id="firstQueryContent"><a name="firstQueryContent"></a><code>[pure virtual] </code>const <span class="type">QByteArray</span> AbstractProtocol::<span class="name">firstQueryContent</span>()</h3>
+<!-- @@@firstQueryContent -->
+<!-- $$$priority[overload1]$$$priority -->
+<h3 class="fn" id="priority"><a name="priority"></a><span class="type">int</span> AbstractProtocol::<span class="name">priority</span>() const</h3>
+<p><b>See also </b><a href="abstractprotocol.html#setPriority">setPriority</a>().</p>
+<!-- @@@priority -->
+<!-- $$$processData[overload1]$$$processDataconstQByteArray&constint -->
+<h3 class="fn" id="processData"><a name="processData"></a><code>[pure virtual slot] </code><span class="type">bool</span> AbstractProtocol::<span class="name">processData</span>(const <span class="type">QByteArray</span> &amp;<i>data</i>, const <span class="type">int</span> <i>index</i> = 0)</h3>
+<!-- @@@processData -->
+<!-- $$$remainCmdCount[overload1]$$$remainCmdCount -->
+<h3 class="fn" id="remainCmdCount"><a name="remainCmdCount"></a><code>[pure virtual] </code>const <span class="type">int</span> AbstractProtocol::<span class="name">remainCmdCount</span>()</h3>
+<!-- @@@remainCmdCount -->
+<!-- $$$setEnabled[overload1]$$$setEnabledbool -->
+<h3 class="fn" id="setEnabled"><a name="setEnabled"></a><span class="type">void</span> AbstractProtocol::<span class="name">setEnabled</span>(<span class="type">bool</span> <i>enabled</i>)</h3>
+<p><b>See also </b><a href="abstractprotocol.html#enabled">enabled</a>().</p>
+<!-- @@@setEnabled -->
+<!-- $$$setPriority[overload1]$$$setPriorityint -->
+<h3 class="fn" id="setPriority"><a name="setPriority"></a><span class="type">void</span> AbstractProtocol::<span class="name">setPriority</span>(<span class="type">int</span> <i>priority</i>)</h3>
+<p><b>See also </b><a href="abstractprotocol.html#priority">priority</a>().</p>
+<!-- @@@setPriority -->
+<!-- $$$skipCurrentQuery[overload1]$$$skipCurrentQuery -->
+<h3 class="fn" id="skipCurrentQuery"><a name="skipCurrentQuery"></a><code>[signal] </code><span class="type">void</span> AbstractProtocol::<span class="name">skipCurrentQuery</span>()</h3>
+<!-- @@@skipCurrentQuery -->
+<!-- $$$startTiming[overload1]$$$startTiming -->
+<h3 class="fn" id="startTiming"><a name="startTiming"></a><code>[pure virtual] </code><span class="type">void</span> AbstractProtocol::<span class="name">startTiming</span>()</h3>
+<!-- @@@startTiming -->
+<!-- $$$stopQuery[overload1]$$$stopQuery -->
+<h3 class="fn" id="stopQuery"><a name="stopQuery"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractProtocol::<span class="name">stopQuery</span>()</h3>
+<!-- @@@stopQuery -->
+<!-- $$$totalCmdCount[overload1]$$$totalCmdCount -->
+<h3 class="fn" id="totalCmdCount"><a name="totalCmdCount"></a><code>[pure virtual] </code>const <span class="type">int</span> AbstractProtocol::<span class="name">totalCmdCount</span>()</h3>
+<!-- @@@totalCmdCount -->
+<!-- $$$xorCODE[overload1]$$$xorCODEconstQByteArray& -->
+<h3 class="fn" id="xorCODE"><a name="xorCODE"></a><code>[static] </code><span class="type">QByteArray</span> AbstractProtocol::<span class="name">xorCODE</span>(const <span class="type">QByteArray</span> &amp;<i>ba</i>)</h3>
+<p>求每个字符的异或值 ( #/$ 与*之间的数值的 XOR 值，不包含 #/$) 根据字符计算出异或校验码</p>
+<p>This function overloads QByteArray.</p>
+<p>@param ba</p>
+<p>实际例子： #BUZZER?* 计算 # 和 * 之间的各个字符的校验码</p>
+<p><b>See also </b>XOR_CODE(const Command &amp;).</p>
+<!-- @@@xorCODE -->
+</div>
+</div> </div></body>
+</html>
