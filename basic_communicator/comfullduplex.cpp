@@ -23,7 +23,7 @@
  *
  **/
 
-const CommInfo ComFullDuplex::commInfo = {QObject::tr("SerialPort"), QObject::tr("Full Duplex Mode")};
+//const CommInfo ComFullDuplex::commInfo = {QObject::tr("SerialPort"), QObject::tr("Full Duplex Mode")};  // 作为静态常量，无法在程序使用过程中被翻译
 
 ComFullDuplex::ComFullDuplex() : AbstractComm()
 {

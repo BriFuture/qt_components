@@ -9,7 +9,7 @@
  * \brief 蓝牙通讯模块，由于生产环境中不支持蓝牙通讯，因此该模块暂时不可用
  */
 
-const CommInfo CommBluetooth::commInfo = {QObject::tr("Bluetooth"), QObject::tr("Bluetooth Mode")};
+//const CommInfo CommBluetooth::commInfo = {QObject::tr("Bluetooth"), QObject::tr("Bluetooth Mode")};
 
 CommBluetooth::CommBluetooth()
 {

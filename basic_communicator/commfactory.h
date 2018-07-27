@@ -12,6 +12,8 @@
 class CommFactory : public QObject
 {
     Q_OBJECT
+    friend class CommManager;
+
 public:
     static const QString defaultCommName;
     explicit CommFactory(QObject *parent = 0);
@@ -41,7 +43,7 @@ private:
     QMap<QString, CommInfo> m_commMap;
 
     QVector<AbstractComm *> m_readyComm;
-    friend class CommManager;
+
 };
 
 #endif // COMMFACTORY_H

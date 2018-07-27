@@ -36,7 +36,7 @@
  * change the code in ComFullDuplex)
  */
 
-const CommInfo ComHalfDuplex::commInfo = {QObject::tr("SerialPort"), QObject::tr("Half Duplex Mode"), true};
+//const CommInfo ComHalfDuplex::commInfo = {QObject::tr("SerialPort"), QObject::tr("Half Duplex Mode"), true};
 
 ComHalfDuplex::ComHalfDuplex() : AbstractComm()
 {

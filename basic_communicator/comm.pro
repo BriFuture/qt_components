@@ -25,7 +25,8 @@ SOURCES += abstractcomm.cpp \
     commfactory.cpp \
     commglobal.cpp \
     commmanager.cpp \
-    abstractprotocol.cpp
+    abstractprotocol.cpp \
+    commandobject.cpp
 
 HEADERS += abstractcomm.h \
     comfullduplex.h \
@@ -36,7 +37,8 @@ HEADERS += abstractcomm.h \
     commfactory.h \
     commglobal.h \
     commmanager.h \
-    abstractprotocol.h
+    abstractprotocol.h \
+    commandobject.h
 unix {
     target.path = /usr/lib
     INSTALLS += target

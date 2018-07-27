@@ -13,7 +13,7 @@
  * \brief  虚拟串口用于模拟下位机发送数据
  *
  */
-const CommInfo VirtualCom::commInfo = {QObject::tr("Simulator"), QObject::tr("Simulator Test Mode")};
+//const CommInfo VirtualCom::commInfo = {QObject::tr("Simulator"), QObject::tr("Simulator Test Mode")};
 
 VirtualCom::VirtualCom() : AbstractComm()
 {

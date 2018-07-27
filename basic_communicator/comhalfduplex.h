@@ -13,7 +13,7 @@ class ComHalfDuplex : public AbstractComm
     Q_OBJECT
 
 public:
-    static const CommInfo commInfo;
+//    static const CommInfo commInfo;
 
     Q_INVOKABLE ComHalfDuplex();
     ~ComHalfDuplex();

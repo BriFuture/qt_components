@@ -11,7 +11,7 @@
  * 与其他连接方式不同，该方式使用 TcpSocket 连接到远程服务器中（而不是常用的串口），
  * 但由于 TcpSocket 继承自 QIODevice，因此实现方式与串口的实现类大同小异
  */
-const CommInfo CommNetwork::commInfo = {QObject::tr("Network"), QObject::tr("Network Mode")};
+//const CommInfo CommNetwork::commInfo = {QObject::tr("Network"), QObject::tr("Network Mode")};
 
 CommNetwork::CommNetwork() : AbstractComm()
 {

@@ -45,6 +45,8 @@ CommManager::CommManager(QObject *parent) : QObject(parent)
     // 在 main thread (GUI thread) 新建子线程，在子线程中执行通讯相关的代码
     m_subThread = new QThread( this );
     m_subThread->start();  // 启动线程
+    util.timer.setSingleShot( true );
+    connect(&util.timer, &QTimer::timeout, this, &CommManager::onTimeout);
     // 初始化串口，根据传入的字符串打开指定模式的串口
     init( CommFactory::defaultCommName );
 }
@@ -84,6 +86,7 @@ void CommManager::init(const QString &name) {
 
     emit commInfoChanged(currentCommInfo());
 }
+
 
 /*!
  * \brief 指定的className，重设Comm模式
@@ -180,7 +183,8 @@ void CommManager::close() {
  */
 void CommManager::addProtocol(AbstractProtocol *p) {
     // 连接 AbstractProtocol 的 skipCurrentQuery 信号，通知 CommManager 停止执行当前指令并执行下一条命令
-    connect( p, &AbstractProtocol::skipCurrentQuery, this, &CommManager::stopCurrentQuery );
+    connect( p, &AbstractProtocol::cmdAdded, this, &CommManager::startQuery );
+    connect( p, &AbstractProtocol::skipCurrentQuery, this, &CommManager::startNextQuery );
     util.protocolList.append( p );
 }
 
@@ -248,15 +252,19 @@ void CommManager::openDevice(const QString &name) {
  * example
  * \code
  *   ...
- *   manager->onQuery();  // 从协议列表中找出一个用命令的协议，将该命令写入到串口等设备中进行查询
+ *   manager->startQuery();  // 从协议列表中找出一个用命令的协议，将该命令写入到串口等设备中进行查询
  * \endcode
  */
-void CommManager::onQuery() {
+void CommManager::startQuery() {
     // 如果下位机设备尚未打开，那么就不需要进行查询
     if( m_state.opened == false ) {
         stopAllQuery();
+        m_state.errorString = tr("Device is not open.");
+        stateChanged(m_state);
+        return;
     }
-    else if( !util.querying ) {
+
+    if( !util.querying ) {
         // 如果 CommManager 不在查询状态，那么从协议列表中找出有待查讯命令的协议并进行查询
         util.querying = true;
         AbstractProtocol *p;
@@ -264,7 +272,8 @@ void CommManager::onQuery() {
             p = util.protocolList.at( i );
             if( p->remainCmdCount() > 0 ) {
                 util.currProtocol = p;
-                QMetaObject::invokeMethod( m_abstractComm, "write", Q_ARG(QByteArray, p->firstQueryContent() ) );
+                util.currCmd = p->getFirstCmd();
+                write();
                 break;
             }
         }
@@ -274,18 +283,23 @@ void CommManager::onQuery() {
 }
 
 /*!
- * \fn CommManager::stopCurrentQuery()
- * 停止当前查询，若协议中有指令未执行，接着执行下一条指令
+ * \brief 若协议中有指令未执行，接着执行下一条指令
  */
-void CommManager::stopCurrentQuery() {
+void CommManager::startNextQuery() {
+    if( m_state.opened == false ) {
+        stopAllQuery();
+        return;
+    }
+
     util.calcProtocolCmd();
+    util.timer.stop();  // 若上一条指令执行完毕，则定时器应结束计时
     // 把当前协议完成之后才能执行其他协议中的命令，
     // util.currProtocol 是一个指针，默认值是 0（空指针），其地址如 0x12345678，-> 表示解引操作符
     // util.currProtocol 由列表中的协议获得（在 CommManager::onQuery() 方法中）
     AbstractProtocol *p = util.currProtocol;
     if( p && (p->remainCmdCount() > 0) ) {        // wait current AbstractProtocol finish
-        // m_ac 为抽象通讯类指针，其函数 write 将命令的内容（util.currProtocol->getFirstCmd()）写入外设
-        QMetaObject::invokeMethod( m_abstractComm, "write", Q_ARG(QByteArray, p->firstQueryContent() ) );
+        util.currCmd = p->getFirstCmd();
+        write();
     }
     else if( util.remainCmdCount > 0 ) {
         // 当前协议中的命令执行完后，从协议列表中找到下一个有待执行命令的协议
@@ -293,7 +307,8 @@ void CommManager::stopCurrentQuery() {
             p = util.protocolList.at( i );
             if( p->remainCmdCount() > 0 ) {
                 util.currProtocol = p;
-                QMetaObject::invokeMethod( m_abstractComm, "write", Q_ARG(QByteArray, p->firstQueryContent() ) );
+                util.currCmd = p->getFirstCmd();
+                write();
                 break;
             }
         }
@@ -304,7 +319,7 @@ void CommManager::stopCurrentQuery() {
         AbstractProtocol *p;
         for( int i = 0; i < util.protocolList.length(); i++ ) {
             p = util.protocolList.at( i );
-            p->clearRemainCmd();  // 释放内存，清空指队列和清零计数器
+            p->clearCmdCount();  // 释放内存，清空指队列和清零计数器
         }
     }
     emit cmdCountChanged( util.remainCmdCount, util.totalCmdCount );  // 调用的槽函数 MainWindow::onCmdCountChanged，显示进度
@@ -318,12 +333,18 @@ void CommManager::stopCurrentQuery() {
 void CommManager::stopAllQuery() {
     // 通知协议管理器停止查询
     for( int i = 0; i < util.protocolList.length(); i++ ) {
-        util.protocolList.at( i )->stopQuery();
+        util.protocolList.at( i )->stopRemainCmd();
     }
     util.querying = false;
     // 停止正在执行的查询，防止下位机响应过慢导致正在查询的命令无法清除
-    stopCurrentQuery();
+//    startNextQuery();
 }
+
+void CommManager::write()
+{
+    QMetaObject::invokeMethod( m_abstractComm, "write", Q_ARG(QByteArray, util.currCmd->contents() ) );
+}
+
 
 /*!
  * \brief 在实际串口执行完查询后进行相应操作
@@ -335,8 +356,18 @@ void CommManager::stopAllQuery() {
  * 因此协议在接收指令时务必判断定时器是否工作
  */
 void CommManager::onWriteFinish() {
-    if( util.currProtocol ) {
-        util.currProtocol->startTiming(); // 通知协议开始计时，防止命令长时间不回复
+    util.timer.start( util.currCmd->getTimeout() );
+    util.cmdExecuteTimes ++;
+    util.currCmd->setState( CommandObject::Executing );
+}
+
+void CommManager::onTimeout()
+{
+    if( util.executeCmd() ) {  // 命令需要继续执行
+        write(); // 命令已执行过，将其写入到设备，等待重新计时
+    }
+    else {  // 上一条命令已经执行完毕
+        startNextQuery();
     }
 }
 
@@ -428,6 +459,7 @@ void CommManager::onRecvLineData(const QByteArray &data) {
     }
 }
 
+// ================================
 /*!
  * \fn CommManager::cmdCountChanged(const int remain, const int all)
  * 通知其他组件指令数目有变化
@@ -459,6 +491,8 @@ void CommManager::onRecvLineData(const QByteArray &data) {
  * \sa AbstractComm::setCommProperty
  */
 
+// =======================================
+
 /*!
  * \class CommManagerUtil
  * \author BriFuture
@@ -482,4 +516,27 @@ void CommManagerUtil::calcProtocolCmd()
     }
     remainCmdCount = rcount;
     totalCmdCount  = tcount;
+}
+
+/**
+ * @brief CommManagerUtil::executeCmd
+ * @return true 表示需要继续执行
+ * 执行命令操作，主要是修改计数器
+ */
+bool CommManagerUtil::executeCmd()
+{
+//    currProtocol->startTiming(); // 通知协议开始计时，防止命令长时间不回复
+
+    if( !currCmd || currCmd->state() >= CommandObject::Timeout )
+        return false;
+
+    qDebug() << "Command: " << currCmd->contents() << "  tried: " << cmdExecuteTimes;
+    if( currCmd->getMaxExecuteTimes() <= cmdExecuteTimes ) {
+        cmdExecuteTimes = 0;
+        currCmd->setState( CommandObject::Timeout );
+        currProtocol->lastQueryFailed();
+        currCmd = 0;
+        return false;
+    }
+    return true;
 }

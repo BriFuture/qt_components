@@ -18,6 +18,14 @@
     </message>
 </context>
 <context>
+    <name>CommManager</name>
+    <message>
+        <location filename="commmanager.cpp" line="260"/>
+        <source>Device is not open.</source>
+        <translation>设备未打开。</translation>
+    </message>
+</context>
+<context>
     <name>CommNetwork</name>
     <message>
         <location filename="commnetwork.cpp" line="42"/>
@@ -35,11 +43,13 @@
     <message>
         <location filename="comfullduplex.cpp" line="26"/>
         <location filename="comhalfduplex.cpp" line="39"/>
+        <location filename="commglobal.cpp" line="40"/>
         <source>SerialPort</source>
         <translation>串口</translation>
     </message>
     <message>
         <location filename="comfullduplex.cpp" line="26"/>
+        <location filename="commglobal.cpp" line="40"/>
         <source>Full Duplex Mode</source>
         <translation>全双工模式</translation>
     </message>

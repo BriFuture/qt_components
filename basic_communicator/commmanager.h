@@ -16,11 +16,17 @@ class CommManagerUtil : public QObject {
     friend class CommManager;
 public:
     void calcProtocolCmd();
+    bool executeCmd();
 
 private:
     explicit CommManagerUtil(QObject *parent = 0) : QObject(parent) {}
     QList<AbstractProtocol *> protocolList;
-    AbstractProtocol         *currProtocol = Q_NULLPTR;
+
+    AbstractProtocol *currProtocol = Q_NULLPTR;
+    CommandObject *currCmd;
+    int cmdExecuteTimes = 0;
+    QTimer timer;
+
     int lineCount      = 0;
     int remainCmdCount = 0;
     int totalCmdCount  = 0;
@@ -55,6 +61,8 @@ public:
     const CommState &state();
 
 signals:
+    void setCommProperty(const QString &key, const QVariant &value);
+
     void commInfoChanged(const CommInfo &ci);
     void codeMayMessed();
     void cmdCountChanged(const int remain, const int all);
@@ -64,23 +72,24 @@ signals:
     void sendData(const QByteArray &data);
     void stateChanged(const CommState &state);
 
-    void setCommProperty(const QString &key, const QVariant &value);
 
 public slots:
-    virtual void onQuery();
+    virtual void startQuery();
     virtual void stopAllQuery();
-    virtual void stopCurrentQuery();
+    virtual void startNextQuery();
     virtual void close();
-
     virtual void openDevice(const QString &name = "");
 
-    void onWriteFinish();
-
+protected slots:
     void onStateChanged(const CommState &state);
     void onRecvLineData(const QByteArray &data);
+    void onWriteFinish();
+    void onTimeout();
+    inline void write();
 
 protected:
     void init(const QString &name);
+
 
     QThread           *m_subThread = Q_NULLPTR;
     AbstractComm      *m_abstractComm = Q_NULLPTR;

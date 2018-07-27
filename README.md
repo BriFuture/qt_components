@@ -9,6 +9,10 @@ A simple, useful communicator aims at simplify communicating between PCs and MCU
 
 [Here](https://brifuture.github.io/qt_components/basic_communicator/docs) is a simple documents for it.
 
+**Newly Added**
+
+* Improve AbstractProtocol with CommandObject, AbstractProtocol can define command execute times and timeout, CommManager can control the process of command repeat and timeout. When interacting with UI, the UI layer just use a subclass instance of CommandObject will be fine.
+
 **TODO**
 
 * Use a xml that can be used by VirtualCom, Let VirtualCom choose a certain XML to _simulate a Certain MCU_, which means that it can completely response as a real MCU do when receiving a command by caller.
