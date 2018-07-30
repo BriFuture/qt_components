@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- commandobject.cpp -->
+  <title>CommandObject Class | Qt  5.7</title>
+</head>
+<body>
+<link href="style/online.css"                 rel="stylesheet" type="text/css">                 <div class="content"> <div class="context"> <a href="index.html">Home</a> <li>CommandObject</li>
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">CommandObject Class</h1>
+<!-- $$$CommandObject-brief -->
+<p><a href="commandobject.html">CommandObject::CommandObject</a> <b class="redFont"><code>\param</code></b> parent <a href="#details">More...</a></p>
+<!-- @@@CommandObject -->
+<ul>
+<li><a href="commandobject-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#State-enum">State</a></b> { Waiting, Executing, Pending, Timeout, RightReplied, WrongReplied }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#CommandObject">CommandObject</a></b>(AbstractProtocol *<i>parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QByteArray </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#contents">contents</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#getMaxExecuteTimes">getMaxExecuteTimes</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#getTimeout">getTimeout</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> AbstractProtocol *</td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#protocolBelongs">protocolBelongs</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QByteArray </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#reply">reply</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#setContents">setContents</a></b>(const QByteArray &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#setMaxExecuteTimes">setMaxExecuteTimes</a></b>(int <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#setReply">setReply</a></b>(const QByteArray &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#setState">setState</a></b>(const State &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#setTimeout">setTimeout</a></b>(int <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> State </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#state">state</a></b>() const</td></tr>
+</table></div>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commandobject.html#stateChanged">stateChanged</a></b>(const State &amp;<i>m_state</i>)</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$CommandObject-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><b class="redFont"><code>\author</code></b>BriFuture <b class="redFont"><code>\date</code></b> 2018.07.26</p>
+<p><a href="commandobject.html">CommandObject::CommandObject</a> <b class="redFont"><code>\param</code></b> parent</p>
+</div>
+<!-- @@@CommandObject -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$State$$$Waiting$$$Executing$$$Pending$$$Timeout$$$RightReplied$$$WrongReplied -->
+<h3 class="fn" id="State-enum"><a name="State-enum"></a>enum CommandObject::<span class="name">State</span></h3>
+<p>命令的执行状态</p>
+<ul>
+<li>Command::Waiting 表示该命令在队列中等待查询</li>
+<li>Command::Executing 表示该命令位于队列首部，正在查询，此时与之相应的计时器启动计时</li>
+<li>Command::Pending 表示该命令暂时被挂起，计时器暂停计时</li>
+<li>Command::Timeout 表示该命令在一定时间内尚未接收到回复（即指令执行失败）</li>
+<li>Command::RightReplied 表示该命令已经收到正常回复</li>
+<li>Command::WrongReplied 表示该命令已经收到回复，但回复并不与该指令对应（目前无法判断）</li>
+</ul>
+<!-- @@@State -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$CommandObject[overload1]$$$CommandObjectAbstractProtocol* -->
+<h3 class="fn" id="CommandObject"><a name="CommandObject"></a>CommandObject::<span class="name">CommandObject</span>(<span class="type"><a href="abstractprotocol.html">AbstractProtocol</a></span> *<i>parent</i> = 0)</h3>
+<p>Default constructs an instance of CommandObject.</p><!-- @@@CommandObject -->
+<!-- $$$contents[overload1]$$$contents -->
+<h3 class="fn" id="contents"><a name="contents"></a><span class="type">QByteArray</span> CommandObject::<span class="name">contents</span>() const</h3>
+<p><b>See also </b><a href="commandobject.html#setContents">setContents</a>().</p>
+<!-- @@@contents -->
+<!-- $$$getMaxExecuteTimes[overload1]$$$getMaxExecuteTimes -->
+<h3 class="fn" id="getMaxExecuteTimes"><a name="getMaxExecuteTimes"></a><span class="type">int</span> CommandObject::<span class="name">getMaxExecuteTimes</span>() const</h3>
+<!-- @@@getMaxExecuteTimes -->
+<!-- $$$getTimeout[overload1]$$$getTimeout -->
+<h3 class="fn" id="getTimeout"><a name="getTimeout"></a><span class="type">int</span> CommandObject::<span class="name">getTimeout</span>() const</h3>
+<!-- @@@getTimeout -->
+<!-- $$$protocolBelongs[overload1]$$$protocolBelongs -->
+<h3 class="fn" id="protocolBelongs"><a name="protocolBelongs"></a><span class="type"><a href="abstractprotocol.html">AbstractProtocol</a></span> *CommandObject::<span class="name">protocolBelongs</span>()</h3>
+<!-- @@@protocolBelongs -->
+<!-- $$$reply[overload1]$$$reply -->
+<h3 class="fn" id="reply"><a name="reply"></a><span class="type">QByteArray</span> CommandObject::<span class="name">reply</span>() const</h3>
+<p><b>See also </b><a href="commandobject.html#setReply">setReply</a>().</p>
+<!-- @@@reply -->
+<!-- $$$setContents[overload1]$$$setContentsconstQByteArray& -->
+<h3 class="fn" id="setContents"><a name="setContents"></a><span class="type">void</span> CommandObject::<span class="name">setContents</span>(const <span class="type">QByteArray</span> &amp;<i>value</i>)</h3>
+<p><b>See also </b><a href="commandobject.html#contents">contents</a>().</p>
+<!-- @@@setContents -->
+<!-- $$$setMaxExecuteTimes[overload1]$$$setMaxExecuteTimesint -->
+<h3 class="fn" id="setMaxExecuteTimes"><a name="setMaxExecuteTimes"></a><span class="type">void</span> CommandObject::<span class="name">setMaxExecuteTimes</span>(<span class="type">int</span> <i>value</i>)</h3>
+<!-- @@@setMaxExecuteTimes -->
+<!-- $$$setReply[overload1]$$$setReplyconstQByteArray& -->
+<h3 class="fn" id="setReply"><a name="setReply"></a><span class="type">void</span> CommandObject::<span class="name">setReply</span>(const <span class="type">QByteArray</span> &amp;<i>value</i>)</h3>
+<p><b>See also </b><a href="commandobject.html#reply">reply</a>().</p>
+<!-- @@@setReply -->
+<!-- $$$setState[overload1]$$$setStateconstState& -->
+<h3 class="fn" id="setState"><a name="setState"></a><span class="type">void</span> CommandObject::<span class="name">setState</span>(const <span class="type"><a href="commandobject.html#State-enum">State</a></span> &amp;<i>value</i>)</h3>
+<p><b>See also </b><a href="commandobject.html#state">state</a>().</p>
+<!-- @@@setState -->
+<!-- $$$setTimeout[overload1]$$$setTimeoutint -->
+<h3 class="fn" id="setTimeout"><a name="setTimeout"></a><span class="type">void</span> CommandObject::<span class="name">setTimeout</span>(<span class="type">int</span> <i>value</i>)</h3>
+<!-- @@@setTimeout -->
+<!-- $$$state[overload1]$$$state -->
+<h3 class="fn" id="state"><a name="state"></a><span class="type"><a href="commandobject.html#State-enum">State</a></span> CommandObject::<span class="name">state</span>() const</h3>
+<p><b>See also </b><a href="commandobject.html#setState">setState</a>().</p>
+<!-- @@@state -->
+<!-- $$$stateChanged[overload1]$$$stateChangedconstState& -->
+<h3 class="fn" id="stateChanged"><a name="stateChanged"></a><code>[signal] </code><span class="type">void</span> CommandObject::<span class="name">stateChanged</span>(const <span class="type"><a href="commandobject.html#State-enum">State</a></span> &amp;<i>m_state</i>)</h3>
+<!-- @@@stateChanged -->
+</div>
+</div> </div></body>
+</html>

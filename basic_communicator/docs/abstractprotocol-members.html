@@ -14,20 +14,29 @@
 <div class="table"><table class="propsummary">
 <tr><td class="topAlign"><ul>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#AbstractProtocol">AbstractProtocol</a></b></span>(QObject *)</li>
-<li class="fn"><span class="name"><b><a href="abstractprotocol.html#clearRemainCmd">clearRemainCmd</a></b></span>()</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#clearCmdCount">clearCmdCount</a></b></span>()</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#cmdAdded">cmdAdded</a></b></span>()</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#defaultMaxExecuteTimes-var">defaultMaxExecuteTimes</a></b></span> : const int</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#defaultTimeout-var">defaultTimeout</a></b></span> : const int</li>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#enabled">enabled</a></b></span>() const : bool</li>
-<li class="fn"><span class="name"><b><a href="abstractprotocol.html#firstQueryContent">firstQueryContent</a></b></span>() : const QByteArray</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#getCmdExecuteTime">getCmdExecuteTime</a></b></span>() const : int</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#getCmdTimeout">getCmdTimeout</a></b></span>() const : int</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#getFirstCmd">getFirstCmd</a></b></span>() : CommandObject *</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#lastQueryFailed">lastQueryFailed</a></b></span>()</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#m_cmdExecuteTime-var">m_cmdExecuteTime</a></b></span> : int</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#m_cmdTimeout-var">m_cmdTimeout</a></b></span> : int</li>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#m_enabled-var">m_enabled</a></b></span> : bool</li>
+</ul></td><td class="topAlign"><ul>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#m_priority-var">m_priority</a></b></span> : int</li>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#priority">priority</a></b></span>() const : int</li>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#processData">processData</a></b></span>(const QByteArray &amp;, const int ) : bool</li>
-</ul></td><td class="topAlign"><ul>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#remainCmdCount">remainCmdCount</a></b></span>() : const int</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#setCmdExecuteTime">setCmdExecuteTime</a></b></span>(int )</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#setCmdTimeout">setCmdTimeout</a></b></span>(int )</li>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#setEnabled">setEnabled</a></b></span>(bool )</li>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#setPriority">setPriority</a></b></span>(int )</li>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#skipCurrentQuery">skipCurrentQuery</a></b></span>()</li>
-<li class="fn"><span class="name"><b><a href="abstractprotocol.html#startTiming">startTiming</a></b></span>()</li>
-<li class="fn"><span class="name"><b><a href="abstractprotocol.html#stopQuery">stopQuery</a></b></span>()</li>
+<li class="fn"><span class="name"><b><a href="abstractprotocol.html#stopRemainCmd">stopRemainCmd</a></b></span>()</li>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#totalCmdCount">totalCmdCount</a></b></span>() : const int</li>
 <li class="fn"><span class="name"><b><a href="abstractprotocol.html#xorCODE">xorCODE</a></b></span>(const QByteArray &amp;) : QByteArray</li>
 </ul>

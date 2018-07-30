@@ -31,25 +31,30 @@
 <h2 id="public-functions">Public Functions</h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#AbstractProtocol">AbstractProtocol</a></b>(QObject *<i>parent</i> = 0)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#clearRemainCmd">clearRemainCmd</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#clearCmdCount">clearCmdCount</a></b>() = 0</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#enabled">enabled</a></b>() const</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual const QByteArray </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#firstQueryContent">firstQueryContent</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#getCmdExecuteTime">getCmdExecuteTime</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#getCmdTimeout">getCmdTimeout</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual CommandObject *</td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#getFirstCmd">getFirstCmd</a></b>() = 0</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#priority">priority</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual const int </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#remainCmdCount">remainCmdCount</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#setCmdExecuteTime">setCmdExecuteTime</a></b>(int <i>cmdExecuteTime</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#setCmdTimeout">setCmdTimeout</a></b>(int <i>cmdTimeout</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#setEnabled">setEnabled</a></b>(bool <i>enabled</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#setPriority">setPriority</a></b>(int <i>priority</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#startTiming">startTiming</a></b>() = 0</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual const int </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#totalCmdCount">totalCmdCount</a></b>() = 0</td></tr>
 </table></div>
 <a name="public-slots"></a>
 <h2 id="public-slots">Public Slots</h2>
 <div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#lastQueryFailed">lastQueryFailed</a></b>() = 0</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#processData">processData</a></b>(const QByteArray &amp;<i>data</i>, const int <i>index</i> = 0) = 0</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#stopQuery">stopQuery</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#stopRemainCmd">stopRemainCmd</a></b>() = 0</td></tr>
 </table></div>
 <a name="signals"></a>
 <h2 id="signals">Signals</h2>
 <div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#cmdAdded">cmdAdded</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="abstractprotocol.html#skipCurrentQuery">skipCurrentQuery</a></b>()</td></tr>
 </table></div>
 <a name="static-public-members"></a>
@@ -70,30 +75,54 @@
 <!-- $$$AbstractProtocol[overload1]$$$AbstractProtocolQObject* -->
 <h3 class="fn" id="AbstractProtocol"><a name="AbstractProtocol"></a>AbstractProtocol::<span class="name">AbstractProtocol</span>(<span class="type">QObject</span> *<i>parent</i> = 0)</h3>
 <p>Default constructs an instance of AbstractProtocol.</p><!-- @@@AbstractProtocol -->
-<!-- $$$clearRemainCmd[overload1]$$$clearRemainCmd -->
-<h3 class="fn" id="clearRemainCmd"><a name="clearRemainCmd"></a><code>[pure virtual] </code><span class="type">void</span> AbstractProtocol::<span class="name">clearRemainCmd</span>()</h3>
-<p>* *</p>
-<p>清空等待查询的命令</p>
-<!-- @@@clearRemainCmd -->
+<!-- $$$clearCmdCount[overload1]$$$clearCmdCount -->
+<h3 class="fn" id="clearCmdCount"><a name="clearCmdCount"></a><code>[pure virtual] </code><span class="type">void</span> AbstractProtocol::<span class="name">clearCmdCount</span>()</h3>
+<!-- @@@clearCmdCount -->
+<!-- $$$cmdAdded[overload1]$$$cmdAdded -->
+<h3 class="fn" id="cmdAdded"><a name="cmdAdded"></a><code>[signal] </code><span class="type">void</span> AbstractProtocol::<span class="name">cmdAdded</span>()</h3>
+<p>新增加了一条指令</p>
+<!-- @@@cmdAdded -->
 <!-- $$$enabled[overload1]$$$enabled -->
 <h3 class="fn" id="enabled"><a name="enabled"></a><span class="type">bool</span> AbstractProtocol::<span class="name">enabled</span>() const</h3>
+<p>AbstractProtocol::enabled <b class="redFont"><code>\return</code></b> 是否使能当前协议</p>
 <p><b>See also </b><a href="abstractprotocol.html#setEnabled">setEnabled</a>().</p>
 <!-- @@@enabled -->
-<!-- $$$firstQueryContent[overload1]$$$firstQueryContent -->
-<h3 class="fn" id="firstQueryContent"><a name="firstQueryContent"></a><code>[pure virtual] </code>const <span class="type">QByteArray</span> AbstractProtocol::<span class="name">firstQueryContent</span>()</h3>
-<!-- @@@firstQueryContent -->
+<!-- $$$getCmdExecuteTime[overload1]$$$getCmdExecuteTime -->
+<h3 class="fn" id="getCmdExecuteTime"><a name="getCmdExecuteTime"></a><span class="type">int</span> AbstractProtocol::<span class="name">getCmdExecuteTime</span>() const</h3>
+<!-- @@@getCmdExecuteTime -->
+<!-- $$$getCmdTimeout[overload1]$$$getCmdTimeout -->
+<h3 class="fn" id="getCmdTimeout"><a name="getCmdTimeout"></a><span class="type">int</span> AbstractProtocol::<span class="name">getCmdTimeout</span>() const</h3>
+<!-- @@@getCmdTimeout -->
+<!-- $$$getFirstCmd[overload1]$$$getFirstCmd -->
+<h3 class="fn" id="getFirstCmd"><a name="getFirstCmd"></a><code>[pure virtual] </code><span class="type"><a href="commandobject.html">CommandObject</a></span> *AbstractProtocol::<span class="name">getFirstCmd</span>()</h3>
+<!-- @@@getFirstCmd -->
+<!-- $$$lastQueryFailed[overload1]$$$lastQueryFailed -->
+<h3 class="fn" id="lastQueryFailed"><a name="lastQueryFailed"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractProtocol::<span class="name">lastQueryFailed</span>()</h3>
+<p>计时器超时后调用该方法，表明查询失败</p>
+<!-- @@@lastQueryFailed -->
 <!-- $$$priority[overload1]$$$priority -->
 <h3 class="fn" id="priority"><a name="priority"></a><span class="type">int</span> AbstractProtocol::<span class="name">priority</span>() const</h3>
+<p>AbstractProtocol::priority 优先级，数值越大，表明优先级越高</p>
 <p><b>See also </b><a href="abstractprotocol.html#setPriority">setPriority</a>().</p>
 <!-- @@@priority -->
 <!-- $$$processData[overload1]$$$processDataconstQByteArray&constint -->
 <h3 class="fn" id="processData"><a name="processData"></a><code>[pure virtual slot] </code><span class="type">bool</span> AbstractProtocol::<span class="name">processData</span>(const <span class="type">QByteArray</span> &amp;<i>data</i>, const <span class="type">int</span> <i>index</i> = 0)</h3>
+<p>通讯器接收到数据时将数据转交给协议进行处理(Communicator -&gt; Protocol) @return true 表示该协议需要独享该数据，所以数据不应该传给下一个协议； true means the protocol need to process the data exclusively, so the data should not be passed to next protocol any more; false means not;</p>
 <!-- @@@processData -->
 <!-- $$$remainCmdCount[overload1]$$$remainCmdCount -->
 <h3 class="fn" id="remainCmdCount"><a name="remainCmdCount"></a><code>[pure virtual] </code>const <span class="type">int</span> AbstractProtocol::<span class="name">remainCmdCount</span>()</h3>
 <!-- @@@remainCmdCount -->
+<!-- $$$setCmdExecuteTime[overload1]$$$setCmdExecuteTimeint -->
+<h3 class="fn" id="setCmdExecuteTime"><a name="setCmdExecuteTime"></a><span class="type">void</span> AbstractProtocol::<span class="name">setCmdExecuteTime</span>(<span class="type">int</span> <i>cmdExecuteTime</i>)</h3>
+<p>设置指令执行次数（0 表示当前协议将会一直等待指令回复，该值一般不使用， 若在网络不畅时可以使用，即等待超时时间将会被忽略）</p>
+<p>-1 means waitting util the command is replied (so waitTime will be ignored but it still reports FAILED) 0 means that command won't be repeated</p>
+<!-- @@@setCmdExecuteTime -->
+<!-- $$$setCmdTimeout[overload1]$$$setCmdTimeoutint -->
+<h3 class="fn" id="setCmdTimeout"><a name="setCmdTimeout"></a><span class="type">void</span> AbstractProtocol::<span class="name">setCmdTimeout</span>(<span class="type">int</span> <i>cmdTimeout</i>)</h3>
+<!-- @@@setCmdTimeout -->
 <!-- $$$setEnabled[overload1]$$$setEnabledbool -->
 <h3 class="fn" id="setEnabled"><a name="setEnabled"></a><span class="type">void</span> AbstractProtocol::<span class="name">setEnabled</span>(<span class="type">bool</span> <i>enabled</i>)</h3>
+<p>AbstractProtocol::setEnabled <b class="redFont"><code>\param</code></b> enabled 使能当前协议</p>
 <p><b>See also </b><a href="abstractprotocol.html#enabled">enabled</a>().</p>
 <!-- @@@setEnabled -->
 <!-- $$$setPriority[overload1]$$$setPriorityint -->
@@ -102,13 +131,12 @@
 <!-- @@@setPriority -->
 <!-- $$$skipCurrentQuery[overload1]$$$skipCurrentQuery -->
 <h3 class="fn" id="skipCurrentQuery"><a name="skipCurrentQuery"></a><code>[signal] </code><span class="type">void</span> AbstractProtocol::<span class="name">skipCurrentQuery</span>()</h3>
+<p>通知通讯器跳过当前查询(查询成功)</p>
 <!-- @@@skipCurrentQuery -->
-<!-- $$$startTiming[overload1]$$$startTiming -->
-<h3 class="fn" id="startTiming"><a name="startTiming"></a><code>[pure virtual] </code><span class="type">void</span> AbstractProtocol::<span class="name">startTiming</span>()</h3>
-<!-- @@@startTiming -->
-<!-- $$$stopQuery[overload1]$$$stopQuery -->
-<h3 class="fn" id="stopQuery"><a name="stopQuery"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractProtocol::<span class="name">stopQuery</span>()</h3>
-<!-- @@@stopQuery -->
+<!-- $$$stopRemainCmd[overload1]$$$stopRemainCmd -->
+<h3 class="fn" id="stopRemainCmd"><a name="stopRemainCmd"></a><code>[pure virtual slot] </code><span class="type">void</span> AbstractProtocol::<span class="name">stopRemainCmd</span>()</h3>
+<p>停止查询操作，清除等待的命令</p>
+<!-- @@@stopRemainCmd -->
 <!-- $$$totalCmdCount[overload1]$$$totalCmdCount -->
 <h3 class="fn" id="totalCmdCount"><a name="totalCmdCount"></a><code>[pure virtual] </code>const <span class="type">int</span> AbstractProtocol::<span class="name">totalCmdCount</span>()</h3>
 <!-- @@@totalCmdCount -->

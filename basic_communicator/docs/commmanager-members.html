@@ -27,25 +27,28 @@
 <li class="fn"><span class="name"><b><a href="commmanager.html#m_abstractComm-var">m_abstractComm</a></b></span> : AbstractComm *= Q_NULLPTR</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#m_state-var">m_state</a></b></span> : CommState</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#m_subThread-var">m_subThread</a></b></span> : QThread *= Q_NULLPTR</li>
-<li class="fn"><span class="name"><b><a href="commmanager.html#onQuery">onQuery</a></b></span>()</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#onRecvLineData">onRecvLineData</a></b></span>(const QByteArray &amp;)</li>
-</ul></td><td class="topAlign"><ul>
 <li class="fn"><span class="name"><b><a href="commmanager.html#onStateChanged">onStateChanged</a></b></span>(const CommState &amp;)</li>
+<li class="fn"><span class="name"><b><a href="commmanager.html#onTimeout">onTimeout</a></b></span>()</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#onWriteFinish">onWriteFinish</a></b></span>()</li>
+</ul></td><td class="topAlign"><ul>
 <li class="fn"><span class="name"><b><a href="commmanager.html#openDevice">openDevice</a></b></span>(const QString &amp;)</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#protocol">protocol</a></b></span>(const QString &amp;) : AbstractProtocol *</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#protocolList">protocolList</a></b></span>() : const QList&lt;AbstractProtocol *&gt; &amp;</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#recvLineData">recvLineData</a></b></span>(const QByteArray &amp;, const int )</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#recvRawData">recvRawData</a></b></span>(const QByteArray &amp;)</li>
+<li class="fn"><span class="name"><b><a href="commmanager.html#removeAllProtocol">removeAllProtocol</a></b></span>()</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#resetMode">resetMode</a></b></span>(const QString &amp;, const bool )</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#resetMode-1">resetMode</a></b></span>(const QString &amp;)</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#sendData">sendData</a></b></span>(const QByteArray &amp;)</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#setCommProperty">setCommProperty</a></b></span>(const QString &amp;, const QVariant &amp;)</li>
+<li class="fn"><span class="name"><b><a href="commmanager.html#startNextQuery">startNextQuery</a></b></span>()</li>
+<li class="fn"><span class="name"><b><a href="commmanager.html#startQuery">startQuery</a></b></span>()</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#state">state</a></b></span>() : const CommState &amp;</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#stateChanged">stateChanged</a></b></span>(const CommState &amp;)</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#stopAllQuery">stopAllQuery</a></b></span>()</li>
-<li class="fn"><span class="name"><b><a href="commmanager.html#stopCurrentQuery">stopCurrentQuery</a></b></span>()</li>
 <li class="fn"><span class="name"><b><a href="commmanager.html#util-var">util</a></b></span> : CommManagerUtil</li>
+<li class="fn"><span class="name"><b><a href="commmanager.html#write">write</a></b></span>()</li>
 </ul>
 </td></tr>
 </table></div>

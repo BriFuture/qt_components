@@ -16,6 +16,7 @@
 <li class="level1"><a href="#public-slots">Public Slots</a></li>
 <li class="level1"><a href="#signals">Signals</a></li>
 <li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#protected-slots">Protected Slots</a></li>
 <li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
@@ -38,6 +39,7 @@
 <tr><td class="memItemLeft rightAlign topAlign"> T </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#getProtocol">getProtocol</a></b>(const QString &amp;<i>objectName</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> AbstractProtocol *</td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#protocol">protocol</a></b>(const QString &amp;<i>objectName</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> const QList&lt;AbstractProtocol *&gt; &amp;</td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#protocolList">protocolList</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#removeAllProtocol">removeAllProtocol</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#resetMode">resetMode</a></b>(const QString &amp;<i>type</i>, const bool <i>halfDuplex</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#resetMode-1">resetMode</a></b>(const QString &amp;<i>className</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> const CommState &amp;</td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#state">state</a></b>()</td></tr>
@@ -46,13 +48,10 @@
 <h2 id="public-slots">Public Slots</h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#close">close</a></b>()</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#onQuery">onQuery</a></b>()</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#onRecvLineData">onRecvLineData</a></b>(const QByteArray &amp;<i>data</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#onStateChanged">onStateChanged</a></b>(const CommState &amp;<i>state</i>)</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#onWriteFinish">onWriteFinish</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#openDevice">openDevice</a></b>(const QString &amp;<i>name</i> = &quot;&quot;)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#startNextQuery">startNextQuery</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#startQuery">startQuery</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#stopAllQuery">stopAllQuery</a></b>()</td></tr>
-<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#stopCurrentQuery">stopCurrentQuery</a></b>()</td></tr>
 </table></div>
 <a name="signals"></a>
 <h2 id="signals">Signals</h2>
@@ -70,6 +69,15 @@
 <h2 id="protected-functions">Protected Functions</h2>
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#init">init</a></b>(const QString &amp;<i>name</i>)</td></tr>
+</table></div>
+<a name="protected-slots"></a>
+<h2 id="protected-slots">Protected Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#onRecvLineData">onRecvLineData</a></b>(const QByteArray &amp;<i>data</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#onStateChanged">onStateChanged</a></b>(const CommState &amp;<i>state</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#onTimeout">onTimeout</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#onWriteFinish">onWriteFinish</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#write">write</a></b>()</td></tr>
 </table></div>
 <a name="details"></a>
 <!-- $$$CommManager-description -->
@@ -149,23 +157,19 @@ qDebug() <span class="operator">&lt;</span><span class="operator">&lt;</span> <s
 <h3 class="fn" id="init"><a name="init"></a><code>[protected] </code><span class="type">void</span> CommManager::<span class="name">init</span>(const <span class="type">QString</span> &amp;<i>name</i>)</h3>
 <p>将 mode 字符串传递给负责构造 <a href="abstractcomm.html">AbstractComm</a> 的工厂类。 Pass the mode string into factory that responds for construct BaseComm @param mode</p>
 <!-- @@@init -->
-<!-- $$$onQuery[overload1]$$$onQuery -->
-<h3 class="fn" id="onQuery"><a name="onQuery"></a><code>[virtual slot] </code><span class="type">void</span> CommManager::<span class="name">onQuery</span>()</h3>
-<p>发送的指令可能不会立即被下位机执行，需要等待一定时间接收下位机的反馈。</p>
-<p>example</p>
-<pre class="cpp"><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
-manager<span class="operator">-</span><span class="operator">&gt;</span>onQuery();  <span class="comment">// 从协议列表中找出一个用命令的协议，将该命令写入到串口等设备中进行查询</span></pre>
-<!-- @@@onQuery -->
 <!-- $$$onRecvLineData[overload1]$$$onRecvLineDataconstQByteArray& -->
-<h3 class="fn" id="onRecvLineData"><a name="onRecvLineData"></a><code>[slot] </code><span class="type">void</span> CommManager::<span class="name">onRecvLineData</span>(const <span class="type">QByteArray</span> &amp;<i>data</i>)</h3>
+<h3 class="fn" id="onRecvLineData"><a name="onRecvLineData"></a><code>[protected slot] </code><span class="type">void</span> CommManager::<span class="name">onRecvLineData</span>(const <span class="type">QByteArray</span> &amp;<i>data</i>)</h3>
 <p>接收到来自串口的数据后，将其转发给各个协议</p>
 <!-- @@@onRecvLineData -->
 <!-- $$$onStateChanged[overload1]$$$onStateChangedconstCommState& -->
-<h3 class="fn" id="onStateChanged"><a name="onStateChanged"></a><code>[slot] </code><span class="type">void</span> CommManager::<span class="name">onStateChanged</span>(const <span class="type">CommState</span> &amp;<i>state</i>)</h3>
+<h3 class="fn" id="onStateChanged"><a name="onStateChanged"></a><code>[protected slot] </code><span class="type">void</span> CommManager::<span class="name">onStateChanged</span>(const <span class="type">CommState</span> &amp;<i>state</i>)</h3>
 <p>在设备的状态改变时，将状态转发给其它层</p>
 <!-- @@@onStateChanged -->
+<!-- $$$onTimeout[overload1]$$$onTimeout -->
+<h3 class="fn" id="onTimeout"><a name="onTimeout"></a><code>[protected slot] </code><span class="type">void</span> CommManager::<span class="name">onTimeout</span>()</h3>
+<!-- @@@onTimeout -->
 <!-- $$$onWriteFinish[overload1]$$$onWriteFinish -->
-<h3 class="fn" id="onWriteFinish"><a name="onWriteFinish"></a><code>[slot] </code><span class="type">void</span> CommManager::<span class="name">onWriteFinish</span>()</h3>
+<h3 class="fn" id="onWriteFinish"><a name="onWriteFinish"></a><code>[protected slot] </code><span class="type">void</span> CommManager::<span class="name">onWriteFinish</span>()</h3>
 <p>在实际串口执行完查询后进行相应操作</p>
 <p>@date 2018.06.16 可能存在的bug： 假设查询队列为 Q1, Q2, Q3 回复为 A1, A2 A3, A4 这里的 A2 A3 是在查询完 Q2 之后同时回复 然而此时协议的定时器尚未工作，在接收到 A3 回复时由于定时器发生错误导致查询队列（程序）崩溃， 因此协议在接收指令时务必判断定时器是否工作</p>
 <!-- @@@onWriteFinish -->
@@ -194,6 +198,9 @@ manager<span class="operator">-</span><span class="operator">&gt;</span>openDevi
 <h3 class="fn" id="recvRawData"><a name="recvRawData"></a><code>[signal] </code><span class="type">void</span> CommManager::<span class="name">recvRawData</span>(const <span class="type">QByteArray</span> &amp;<i>data</i>)</h3>
 <p>通知其他组件从串口/网络中接收到的原始数据（即不一定包含 AbstractProtocol::LineSeperator 的数据）</p>
 <!-- @@@recvRawData -->
+<!-- $$$removeAllProtocol[overload1]$$$removeAllProtocol -->
+<h3 class="fn" id="removeAllProtocol"><a name="removeAllProtocol"></a><span class="type">void</span> CommManager::<span class="name">removeAllProtocol</span>()</h3>
+<!-- @@@removeAllProtocol -->
 <!-- $$$resetMode[overload1]$$$resetModeconstQString&constbool -->
 <h3 class="fn" id="resetMode"><a name="resetMode"></a><span class="type">void</span> CommManager::<span class="name">resetMode</span>(const <span class="type">QString</span> &amp;<i>type</i>, const <span class="type">bool</span> <i>halfDuplex</i>)</h3>
 <p>CommManager::resetMode</p>
@@ -225,6 +232,17 @@ manager<span class="operator">-</span><span class="operator">&gt;</span>resetMod
 <p>设置串口/网络设备的属性</p>
 <p><b>See also </b><a href="abstractcomm.html#setCommProperty">AbstractComm::setCommProperty</a>.</p>
 <!-- @@@setCommProperty -->
+<!-- $$$startNextQuery[overload1]$$$startNextQuery -->
+<h3 class="fn" id="startNextQuery"><a name="startNextQuery"></a><code>[virtual slot] </code><span class="type">void</span> CommManager::<span class="name">startNextQuery</span>()</h3>
+<p>若协议中有指令未执行，接着执行下一条指令</p>
+<!-- @@@startNextQuery -->
+<!-- $$$startQuery[overload1]$$$startQuery -->
+<h3 class="fn" id="startQuery"><a name="startQuery"></a><code>[virtual slot] </code><span class="type">void</span> CommManager::<span class="name">startQuery</span>()</h3>
+<p>发送的指令可能不会立即被下位机执行，需要等待一定时间接收下位机的反馈。</p>
+<p>example</p>
+<pre class="cpp"><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+manager<span class="operator">-</span><span class="operator">&gt;</span>startQuery();  <span class="comment">// 从协议列表中找出一个用命令的协议，将该命令写入到串口等设备中进行查询</span></pre>
+<!-- @@@startQuery -->
 <!-- $$$state[overload1]$$$state -->
 <h3 class="fn" id="state"><a name="state"></a>const <span class="type">CommState</span> &amp;CommManager::<span class="name">state</span>()</h3>
 <p>返回串口状态</p>
@@ -237,10 +255,9 @@ manager<span class="operator">-</span><span class="operator">&gt;</span>resetMod
 <h3 class="fn" id="stopAllQuery"><a name="stopAllQuery"></a><code>[virtual slot] </code><span class="type">void</span> CommManager::<span class="name">stopAllQuery</span>()</h3>
 <p>停止所有查询，并通知协议管理器也重置查询</p>
 <!-- @@@stopAllQuery -->
-<!-- $$$stopCurrentQuery[overload1]$$$stopCurrentQuery -->
-<h3 class="fn" id="stopCurrentQuery"><a name="stopCurrentQuery"></a><code>[virtual slot] </code><span class="type">void</span> CommManager::<span class="name">stopCurrentQuery</span>()</h3>
-<p>停止当前查询，若协议中有指令未执行，接着执行下一条指令</p>
-<!-- @@@stopCurrentQuery -->
+<!-- $$$write[overload1]$$$write -->
+<h3 class="fn" id="write"><a name="write"></a><code>[protected slot] </code><span class="type">void</span> CommManager::<span class="name">write</span>()</h3>
+<!-- @@@write -->
 </div>
 </div> </div></body>
 </html>
