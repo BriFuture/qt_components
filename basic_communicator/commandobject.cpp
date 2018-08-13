@@ -25,6 +25,7 @@ CommandObject::CommandObject(AbstractProtocol *parent) : QObject(parent)
 {
     maxExecuteTimes = AbstractProtocol::defaultMaxExecuteTimes;
     timeout = AbstractProtocol::defaultTimeout;
+    m_state = Waiting;
 }
 
 AbstractProtocol *CommandObject::protocolBelongs()

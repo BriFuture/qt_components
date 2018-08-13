@@ -11,7 +11,6 @@ class VirtualCom : public AbstractComm
     Q_OBJECT
 public:
 //    static const CommInfo commInfo;
-    static const bool existInFactory;
     Q_INVOKABLE explicit VirtualCom();
 signals:
 

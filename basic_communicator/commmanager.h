@@ -47,6 +47,8 @@ public:
 
     void addProtocol(AbstractProtocol *p);
     void delProtocol(AbstractProtocol *p);
+    void removeAllProtocol();
+
     const QList<AbstractProtocol *> &protocolList();
     AbstractProtocol *protocol(const QString &objectName);
 
@@ -59,6 +61,7 @@ public:
     }
 
     const CommState &state();
+    AbstractComm *abstractComm() const;
 
 signals:
     void setCommProperty(const QString &key, const QVariant &value);
@@ -85,7 +88,7 @@ protected slots:
     void onRecvLineData(const QByteArray &data);
     void onWriteFinish();
     void onTimeout();
-    inline void write();
+    void write();
 
 protected:
     void init(const QString &name);

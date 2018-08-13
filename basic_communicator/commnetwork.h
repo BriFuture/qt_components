@@ -10,12 +10,18 @@
 class CommNetwork : public AbstractComm
 {
     Q_OBJECT
+    Q_PROPERTY(QString host READ host)
+    Q_PROPERTY(int port READ port)
+    Q_PROPERTY(int remoteId READ remoteId)
 public:
 //    static const CommInfo commInfo;
     Q_INVOKABLE explicit CommNetwork();
 
-signals:
+    QString host() const;
+    qint16 port() const;
+    int remoteId() const;
 
+signals:
 
 public slots:
     virtual void init() Q_DECL_OVERRIDE;

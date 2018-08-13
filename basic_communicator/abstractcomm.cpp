@@ -97,6 +97,37 @@ void AbstractComm::setStarted(const bool started) {
 
 
 /*!
+ * \brief 设置状态，注意，所有的子类都共享抽象类里的 static 内存区域，
+ * 对某个子类的 state 进行修改，会影响到其它所有的子类。
+ *
+ * example:
+ * \code
+ *   AbstractComm *cfd = new ImplComm1;
+ *
+ *   CommState s1 = cfd->state();
+ *   qDebug() << s1; // { "COM1", 9600, false, "" }
+ *
+ *   s1.baudRate = 38400;
+ *   cfd->setState(s1);
+ *
+ *   AbstractComm *chd = new ImplComm1;
+ *   CommState s2 = cfd->state();
+ *   qDebug() << s2; // { "COM1", 38400, false, "" }
+ * \endcode
+ *
+ * \sa AbstractComm::state()
+ */
+void AbstractComm::setState(const CommState &state)
+{
+    m_state = state;
+}
+
+CommState &AbstractComm::state()
+{
+    return m_state;
+}
+
+/*!
  * \brief 默认的关闭串口/网络操作
  * 提供统一的关闭操作，供子类调用，若子类对关闭操作没有特殊的要求，那么不需要重写关闭操作
  */
@@ -106,6 +137,15 @@ void AbstractComm::close(QIODevice *device)
     m_state.opened   = false;
     emit stateChanged( m_state );
 }
+
+/*!
+ * \fn void AbstractComm::onRead()
+ * \brief
+ * 读取操作，若运行在子线程的循环中，需要显式调用 Qt 的事件分发，
+ * 避免子线程无法关闭。
+ *
+ * \sa AbstractComm::readDevice(QIODevice *device)
+ */
 
 /*!
  * \brief 默认的读取串口操作
@@ -146,6 +186,11 @@ void AbstractComm::readDevice(QIODevice *device)
  */
 void AbstractComm::splitData()
 {
+    if( m_recvData.length() > PacketMaxSize ) {
+        // 防止乱码时找不到 \r\n 程序出现崩溃
+        emit codeMayMessed();
+        m_recvData.clear();
+    }
     // 假设拼接出来的句子是多个命令或者不完整。
     // 找出 \r\n 在句子中的位置，如果返回值是 -1，那么说明没有完整的句子
     int linePos = m_recvData.indexOf( LineSeparator );
@@ -158,17 +203,24 @@ void AbstractComm::splitData()
         // m_recvData 变成 #500.0000*ff\r\n
         m_recvData = m_recvData.mid( linePos + 2 );
 
-        if( m_recvData.length() > PacketMaxSize ) {
-            // 防止乱码时找不到 \r\n 程序出现崩溃
-            emit codeMayMessed();
-            m_recvData.clear();
-        }
+
         emit recvLine( rawData );
 
         // 因为 m_recvData 还有一条语句，linePos >= 0
         linePos = m_recvData.indexOf( LineSeparator );
     }
 }
+
+/*!
+ * \fn void AbstractComm::write(const QByteArray &rawdata)
+ * \brief
+ * This is a funciton that actually performs the communication
+ * it receives raw string and send it into serial port
+ * 将文本数据写入到串口
+ * 原始的文本数据
+ *
+ * \sa AbstractComm::writeData(QIODevice *device, const QByteArray &rawdata);
+ */
 
 /*!
  * \brief 默认的写串口操作
@@ -197,40 +249,9 @@ void AbstractComm::writeData(QIODevice *device, const QByteArray &rawdata)
 }
 
 /*!
- * \brief 设置状态，注意，所有的子类都共享抽象类里的 static 内存区域，
- * 对某个子类的 state 进行修改，会影响到其它所有的子类。
- *
- * example:
- * \code
- *   AbstractComm *cfd = new ImplComm1;
- *
- *   CommState s1 = cfd->state();
- *   qDebug() << s1; // { "COM1", 9600, false, "" }
- *
- *   s1.baudRate = 38400;
- *   cfd->setState(s1);
- *
- *   AbstractComm *chd = new ImplComm1;
- *   CommState s2 = cfd->state();
- *   qDebug() << s2; // { "COM1", 38400, false, "" }
- * \endcode
- *
- * \sa AbstractComm::state()
- */
-void AbstractComm::setState(const CommState &state)
-{
-    m_state = state;
-}
-
-CommState &AbstractComm::state()
-{
-    return m_state;
-}
-
-/*!
  * \fn void AbstractComm::sendData(const QByteArray &data)
  * \brief
- * 向界面发送数据
+ * 表示数据已经发送到外部设备中
  */
 
 /*!
@@ -238,6 +259,11 @@ CommState &AbstractComm::state()
  * \brief
  * 初始化串口/网络，设计串口都是工作在子线程中，因此需要通过信号槽方式，
  * 在子线程中运行初始化函数
+ */
+
+/*!
+ * \fn void AbstractComm::close()
+ * \brief 关闭外部设备连接操作
  */
 
 /*!
@@ -265,21 +291,6 @@ CommState &AbstractComm::state()
  * \endcode
  */
 
-/*!
- * \fn void AbstractComm::write(const QByteArray &rawdata)
- * \brief
- * This is a funciton that actually performs the communication
- * it receives raw string and send it into serial port
- * 将文本数据写入到串口
- * 原始的文本数据
- */
-
-/*!
- * \fn void AbstractComm::onRead()
- * \brief
- * 读取操作，若运行在子线程的循环中，需要显式调用 Qt 的事件分发，
- * 避免子线程无法关闭。
- */
 
 /*!
  * \fn void AbstractComm::recvLine(const QByteArray &data)

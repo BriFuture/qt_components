@@ -10,6 +10,8 @@
 CommFactory * Comm::factory = 0;
 CommManager * Comm::manager = 0;
 
+bool inited = false;
+
 /*!
  * \namespace Comm
  * \brief Comm::init
@@ -29,7 +31,6 @@ CommManager * Comm::manager = 0;
  * \endcode
  */
 void Comm::init() {
-    static bool inited = false;
     if( inited ) {
         return;
     }
@@ -66,8 +67,10 @@ void Comm::init() {
  */
 void Comm::destroy()
 {
-    factory->deleteLater();
+    manager->removeAllProtocol();
+    manager->stopAllQuery(); // 停止所有查询
     manager->deleteLater();
+    factory->deleteLater();
 }
 
 /*!

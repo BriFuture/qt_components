@@ -48,18 +48,19 @@ QByteArray AbstractProtocol::xorCODE(const QByteArray &ba)
     return x;  // hex
 }
 
-
-void AbstractProtocol::startTiming()
-{
-    // do no thing
-}
-
-
+/*!
+ * \brief AbstractProtocol::enabled
+ * \return 是否使能当前协议
+ */
 bool AbstractProtocol::enabled() const
 {
     return m_enabled;
 }
 
+/*!
+ * \brief AbstractProtocol::setEnabled
+ * \param enabled 使能当前协议
+ */
 void AbstractProtocol::setEnabled(bool enabled)
 {
     m_enabled = enabled;
@@ -113,10 +114,6 @@ void AbstractProtocol::setCmdTimeout(int cmdTimeout)
  * \brief 清空命令计数器
  */
 
-/*!
- * \fn AbstractProtocol::skipCurrentCmd(const QByteArray &cmd = QByteArray())
- * 通知通讯器跳过当前查询(查询成功)
- */
 
 /*!
  * \fn void AbstractProtocol::cmdAdded()
@@ -124,8 +121,18 @@ void AbstractProtocol::setCmdTimeout(int cmdTimeout)
  */
 
 /*!
+ * \fn AbstractProtocol::skipCurrentQuery()
+ * 通知通讯器跳过当前查询(查询成功)
+ */
+
+/*!
  * \fn void AbstractProtocol::stopRemainCmd()
- * 停止查询操作
+ * 停止查询操作，清除等待的命令
+ */
+
+/*!
+ * \fn void AbstractProtocol::lastQueryFailed()
+ * 计时器超时后调用该方法，表明查询失败
  */
 
 /*!
@@ -135,11 +142,6 @@ void AbstractProtocol::setCmdTimeout(int cmdTimeout)
  *          true means the protocol need to process the data exclusively,
  *          so the data should not be passed to next protocol any more;
  *          false means not;
- */
-
-/*!
- * \fn void AbstractProtocol::lastQueryFailed()
- * 计时器超时后调用该方法，表明查询失败
  */
 
 //=====================

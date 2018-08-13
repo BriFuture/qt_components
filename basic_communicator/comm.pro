@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT -= gui
+QT       -= gui
 QT += core
 
 TARGET = comm
@@ -23,3 +23,26 @@ unix {
     INSTALLS += target
 }
 
+SOURCES += abstractcomm.cpp \
+    comfullduplex.cpp \
+    comhalfduplex.cpp \
+    commbluetooth.cpp \
+    commnetwork.cpp \
+    virtualcom.cpp \
+    commfactory.cpp \
+    commglobal.cpp \
+    commmanager.cpp \
+    abstractprotocol.cpp \
+    commandobject.cpp
+
+HEADERS += abstractcomm.h \
+    comfullduplex.h \
+    comhalfduplex.h \
+    commbluetooth.h \
+    commnetwork.h \
+    virtualcom.h \
+    commfactory.h \
+    commglobal.h \
+    commmanager.h \
+    abstractprotocol.h \
+    commandobject.h

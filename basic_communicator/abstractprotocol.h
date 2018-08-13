@@ -21,7 +21,6 @@ public:
     virtual void clearCmdCount() = 0;
 
     virtual CommandObject *getFirstCmd() = 0;
-    virtual void startTiming();
 
     bool enabled() const;
     void setEnabled(bool enabled);

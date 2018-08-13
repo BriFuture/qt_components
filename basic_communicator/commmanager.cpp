@@ -1,6 +1,5 @@
 ﻿#include "commmanager.h"
 #include "commfactory.h"
-#include "commglobal.h"
 #include <QDebug>
 
 /*!
@@ -38,8 +37,6 @@
  * \endcode
  */
 
-using namespace  Comm;
-
 CommManager::CommManager(QObject *parent) : QObject(parent)
 {
     // 在 main thread (GUI thread) 新建子线程，在子线程中执行通讯相关的代码
@@ -54,12 +51,12 @@ CommManager::CommManager(QObject *parent) : QObject(parent)
 
 /*!
  * \brief  将 mode 字符串传递给负责构造 AbstractComm 的工厂类。
- * Pass the mode string into factory that responds for construct BaseComm
+ * Pass the mode string into CommFactory::defaultFactory() that responds for construct BaseComm
  * @param mode
  */
 void CommManager::init(const QString &name) {
     // m_ac 负责控制实际的串口通讯
-    m_abstractComm = factory->createComm( name );
+    m_abstractComm = CommFactory::defaultFactory()->createComm( name );
     // 保存通讯器名称
     util.commClassName = name;
 
@@ -87,6 +84,13 @@ void CommManager::init(const QString &name) {
     emit commInfoChanged(currentCommInfo());
 }
 
+/*!
+ * \brief 返回当前所用的通讯器
+ */
+AbstractComm *CommManager::abstractComm() const
+{
+    return m_abstractComm;
+}
 
 /*!
  * \brief 指定的className，重设Comm模式
@@ -135,7 +139,7 @@ void CommManager::resetMode(const QString &className) {
  * \endcode
  */
 void CommManager::resetMode(const QString &type, const bool halfDuplex) {
-    QString name = factory->commClassName(type, halfDuplex);
+    QString name = CommFactory::defaultFactory()->commClassName(type, halfDuplex);
     resetMode(name);
 }
 
@@ -205,6 +209,11 @@ void CommManager::addProtocol(AbstractProtocol *p) {
 void CommManager::delProtocol(AbstractProtocol *p)
 {
     util.protocolList.removeOne(p);
+}
+
+void CommManager::removeAllProtocol()
+{
+    util.protocolList.clear();
 }
 
 /*!
@@ -331,6 +340,7 @@ void CommManager::startNextQuery() {
  * 停止所有查询，并通知协议管理器也重置查询
  */
 void CommManager::stopAllQuery() {
+    util.timer.stop();  // 停止计时
     // 通知协议管理器停止查询
     for( int i = 0; i < util.protocolList.length(); i++ ) {
         util.protocolList.at( i )->stopRemainCmd();
@@ -422,7 +432,7 @@ AbstractProtocol *CommManager::protocol(const QString &objectName) {
  */
 const CommInfo &CommManager::currentCommInfo()
 {
-    QMapIterator<QString, CommInfo> it(factory->m_commMap);
+    QMapIterator<QString, CommInfo> it(CommFactory::defaultFactory()->m_commMap);
     while(it.hasNext()) {
         it.next();
         if(it.key() == util.commClassName) {

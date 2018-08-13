@@ -70,3 +70,18 @@ void CommNetwork::setCommProperty(const QString &key, const QVariant &value) {
 void CommNetwork::onRead() {
     AbstractComm::readDevice( m_device );
 }
+
+int CommNetwork::remoteId() const
+{
+    return m_remoteId;
+}
+
+qint16 CommNetwork::port() const
+{
+    return m_port;
+}
+
+QString CommNetwork::host() const
+{
+    return m_host;
+}

@@ -1,8 +1,6 @@
 ﻿#ifndef COMMGLOBAL_H
 #define COMMGLOBAL_H
 
-#include <QMap>
-#include <QVector>
 #include "commfactory.h"
 #include "commmanager.h"
 
