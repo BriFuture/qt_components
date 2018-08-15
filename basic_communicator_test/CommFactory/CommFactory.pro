@@ -16,8 +16,5 @@ TEMPLATE = app
 
 
 SOURCES += tst_commfactorytest.cpp
-DEFINES += SRCDIR=\\\"$$PWD/\\\"
-
+DEFINES += SRCDIR=\\\"$$PWD/\\\" COMMUNICATOR_INCLUDE
 include(../../basic_communicator/communicator.pri)
-
-INCLUDEPATH += $$PWD/../../basic_communicator

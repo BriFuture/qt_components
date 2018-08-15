@@ -2,12 +2,15 @@
 #include <QtTest>
 #include <QDebug>
 
+
 #define private public
 #define protected public
 
 #include "commglobal.h"
 #include "abstractprotocol.h"
 #include "commnetwork.h"
+#undef protected
+#undef private
 
 class InvalidProtocol : public AbstractProtocol {
     Q_OBJECT

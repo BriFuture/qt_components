@@ -2,8 +2,12 @@
 #include <QtTest>
 #include <QDebug>
 
+#define protected public
+#define private public
 #include "commfactory.h"
 #include "commglobal.h"
+#undef protected
+#undef private
 
 class CommFactoryTest : public QObject
 {
@@ -37,7 +41,7 @@ CommFactoryTest::~CommFactoryTest()
 void CommFactoryTest::testCreateComm()
 {
     qDebug() << "before Test Create Comm";
-    AbstractComm *ac = cf->createComm("ComFullDuplex");
+    AbstractComm *ac  = cf->createComm("ComFullDuplex");
     AbstractComm *ac2 = cf->createComm( "ComHalfDuplex" );
     AbstractComm *ac3 = cf->createComm("ComFullDuplex");
     QVERIFY2( ac != 0, "Failure");

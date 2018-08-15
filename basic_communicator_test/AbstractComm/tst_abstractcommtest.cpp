@@ -4,10 +4,12 @@
 #include <QDebug>
 
 #define protected public
-
+#define private public
 #include "abstractcomm.h"
 #include "comfullduplex.h"
 #include "virtualcom.h"
+#undef protected
+#undef private
 
 class AbstractCommTest : public QObject
 {
