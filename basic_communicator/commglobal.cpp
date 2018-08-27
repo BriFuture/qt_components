@@ -1,11 +1,6 @@
 ﻿#include "commglobal.h"
 #include <QMetaType>
-#include "comfullduplex.h"
-#include "comhalfduplex.h"
-#include "commnetwork.h"
-#include "virtualcom.h"
 
-#define MyAddComm(COMM, INFO)  factory->addComm(COMM::staticMetaObject, INFO)
 
 CommFactory * Comm::factory = 0;
 CommManager * Comm::manager = 0;
@@ -37,24 +32,6 @@ void Comm::init() {
     qRegisterMetaType<CommState>();
 
     factory = CommFactory::defaultFactory();
-
-    CommInfo info;
-    info.type = QObject::tr("SerialPort");
-    info.desc = QObject::tr("Full Duplex Mode");
-    info.isHalfDuplex = false;
-    MyAddComm(ComFullDuplex, info);
-    info.type = QObject::tr("SerialPort");
-    info.desc = QObject::tr("Half Duplex Mode");
-    info.isHalfDuplex = true;
-    MyAddComm(ComHalfDuplex, info);
-    info.type = QObject::tr("Network");
-    info.desc = QObject::tr("Network Mode");
-    info.isHalfDuplex = false;
-    MyAddComm(CommNetwork, info);
-    info.type = QObject::tr("Simulator");
-    info.desc = QObject::tr("Simulator Test Mode");
-    info.isHalfDuplex = false;
-    MyAddComm(VirtualCom, info);
 
     manager = new CommManager;
     inited = true;

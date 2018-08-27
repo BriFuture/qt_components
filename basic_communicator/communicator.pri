@@ -12,7 +12,8 @@ if(contains(DEFINES, COMMUNICATOR_INCLUDE)) {
         $$PWD/commglobal.cpp \
         $$PWD/commmanager.cpp \
         $$PWD/abstractprotocol.cpp \
-        $$PWD/commandobject.cpp
+        $$PWD/commandobject.cpp \
+        $$PWD/dataobject.cpp
 
     HEADERS += \
         $$PWD/abstractcomm.h \
@@ -25,7 +26,8 @@ if(contains(DEFINES, COMMUNICATOR_INCLUDE)) {
         $$PWD/commglobal.h \
         $$PWD/commmanager.h \
         $$PWD/abstractprotocol.h \
-        $$PWD/commandobject.h
+        $$PWD/commandobject.h \
+        $$PWD/dataobject.h
 }
 
 INCLUDEPATH += $$PWD

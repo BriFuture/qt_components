@@ -2,8 +2,11 @@
 #define ABSTRACTPROTOCOL_H
 
 #include <QObject>
+#include "dataobject.h"
 #include "commandobject.h"
+
 class CommandObject;
+class DataObject;
 
 class AbstractProtocol : public QObject
 {
@@ -42,7 +45,7 @@ signals:
 public slots:
     virtual void lastQueryFailed() = 0;
     virtual void stopRemainCmd() = 0;
-    virtual bool processData(const QByteArray &data, const int index=0) = 0;
+    virtual bool processData(DataObject *dataObj) = 0;
 
 protected:
     bool m_enabled;

@@ -1,0 +1,33 @@
+# include(compat.qdocconf)
+
+outputdir = ./docs
+sourceencoding = UTF-8
+headers.fileextensions = "*.h *.ch *.h++ *.hh *.hpp *.hxx"
+sources.fileextensions = "*.cpp *.qdoc *.mm *.qml"
+syntaxhighlighting = true
+tabsize = 4
+version = 5.7.1
+headerdirs = ./
+sourcedirs = ./
+
+
+imagedirs = ./img    
+images.fileextensions = *.png         
+
+outputformats = HTML
+HTML.postheader = "<link href=\"style/online.css\" \
+                rel=\"stylesheet\" type=\"text/css\"> \
+                <div class=\"content\"> <div class=\"context\"> <a href=\"index.html\">Home</a> "
+HTML.footer =  "</div> </div>"
+
+HTML.nosubdirs = true
+HTML.quotinginformation = true
+HTML.stylesheets = ./res/online.css
+# HTML.style = "h3.fn,span.fn" \
+#              "{ margin-left: 1cm; text-indent: -1cm; }\n" \
+#              "a:link { color: #004faf; text-decoration: none }\n" \
+#              "a:visited" \
+#              "{ color: #672967; text-decoration: none }\n" \
+#              "td.postheader { font-family: sans-serif }\n" \
+#              "tr.address { font-family: sans-serif }\n" \
+#              "body { background: #ffffff; color: black; }"

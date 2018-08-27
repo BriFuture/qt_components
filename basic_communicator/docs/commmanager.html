@@ -33,6 +33,7 @@
 <div class="table"><table class="alignedsummary">
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#CommManager">CommManager</a></b>(QObject *<i>parent</i> = 0)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#dtor.CommManager">~CommManager</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> AbstractComm *</td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#abstractComm">abstractComm</a></b>() const</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#addProtocol">addProtocol</a></b>(AbstractProtocol *<i>p</i>)</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> const CommInfo &amp;</td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#currentCommInfo">currentCommInfo</a></b>()</td></tr>
 <tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="commmanager.html#delProtocol">delProtocol</a></b>(AbstractProtocol *<i>p</i>)</td></tr>
@@ -104,6 +105,10 @@ connect(cm<span class="operator">,</span> <span class="operator">&amp;</span>Com
 <h3 class="fn" id="dtor.CommManager"><a name="dtor.CommManager"></a>CommManager::<span class="name">~CommManager</span>()</h3>
 <p>关闭串口/网路，结束子线程</p>
 <!-- @@@~CommManager -->
+<!-- $$$abstractComm[overload1]$$$abstractComm -->
+<h3 class="fn" id="abstractComm"><a name="abstractComm"></a><span class="type"><a href="abstractcomm.html">AbstractComm</a></span> *CommManager::<span class="name">abstractComm</span>() const</h3>
+<p>返回当前所用的通讯器</p>
+<!-- @@@abstractComm -->
 <!-- $$$addProtocol[overload1]$$$addProtocolAbstractProtocol* -->
 <h3 class="fn" id="addProtocol"><a name="addProtocol"></a><span class="type">void</span> CommManager::<span class="name">addProtocol</span>(<span class="type"><a href="abstractprotocol.html">AbstractProtocol</a></span> *<i>p</i>)</h3>
 <p>向 <a href="commmanager.html">CommManager</a> 管理器中添加协议，以便处理相应协议的数据</p>
@@ -155,7 +160,7 @@ qDebug() <span class="operator">&lt;</span><span class="operator">&lt;</span> <s
 <!-- @@@getProtocol -->
 <!-- $$$init[overload1]$$$initconstQString& -->
 <h3 class="fn" id="init"><a name="init"></a><code>[protected] </code><span class="type">void</span> CommManager::<span class="name">init</span>(const <span class="type">QString</span> &amp;<i>name</i>)</h3>
-<p>将 mode 字符串传递给负责构造 <a href="abstractcomm.html">AbstractComm</a> 的工厂类。 Pass the mode string into factory that responds for construct BaseComm @param mode</p>
+<p>将 mode 字符串传递给负责构造 <a href="abstractcomm.html">AbstractComm</a> 的工厂类。 Pass the mode string into <a href="commfactory.html#defaultFactory">CommFactory::defaultFactory</a>() that responds for construct BaseComm @param mode</p>
 <!-- @@@init -->
 <!-- $$$onRecvLineData[overload1]$$$onRecvLineDataconstQByteArray& -->
 <h3 class="fn" id="onRecvLineData"><a name="onRecvLineData"></a><code>[protected slot] </code><span class="type">void</span> CommManager::<span class="name">onRecvLineData</span>(const <span class="type">QByteArray</span> &amp;<i>data</i>)</h3>

@@ -1,5 +1,8 @@
 ﻿#include "commfactory.h"
 #include "comfullduplex.h"
+#include "comhalfduplex.h"
+#include "commnetwork.h"
+#include "virtualcom.h"
 #include "commglobal.h"
 
 #include <QDebug>
@@ -44,12 +47,29 @@
  * \endcode
  */
 
-//#define MyAddComm(COMM) addComm(COMM::staticMetaObject, COMM::commInfo)
 const QString CommFactory::defaultCommName = ComFullDuplex::staticMetaObject.className();
+#define MyAddComm(COMM, INFO)  addComm(COMM::staticMetaObject, INFO)
+
 
 CommFactory::CommFactory(QObject *parent) : QObject(parent)
 {
-
+    CommInfo info;
+    info.type = QObject::tr("SerialPort");
+    info.desc = QObject::tr("Full Duplex Mode");
+    info.isHalfDuplex = false;
+    MyAddComm(ComFullDuplex, info);
+    info.type = QObject::tr("SerialPort");
+    info.desc = QObject::tr("Half Duplex Mode");
+    info.isHalfDuplex = true;
+    MyAddComm(ComHalfDuplex, info);
+    info.type = QObject::tr("Network");
+    info.desc = QObject::tr("Network Mode");
+    info.isHalfDuplex = false;
+    MyAddComm(CommNetwork, info);
+    info.type = QObject::tr("Simulator");
+    info.desc = QObject::tr("Simulator Test Mode");
+    info.isHalfDuplex = false;
+    MyAddComm(VirtualCom, info);
 }
 
 CommFactory::CommFactory(const CommFactory &cf)

@@ -22,7 +22,7 @@
     <message>
         <location filename="commmanager.cpp" line="260"/>
         <source>Device is not open.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>

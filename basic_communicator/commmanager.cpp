@@ -460,10 +460,13 @@ void CommManager::onRecvLineData(const QByteArray &data) {
     emit recvLineData(data, util.lineCount);
 
     AbstractProtocol *p;
+    DataObject dataObj;
     for( int i = 0; i < util.protocolList.length(); i++ ) {
         p = util.protocolList.at( i ); // at(0) 为 MspProtocol 的对象
         // data 中是句子 #+600.0000*ff\r\n，按协议进行处理
-        if( p->enabled() && p->processData( data, util.lineCount ) ) {  // 这里的 processData 是回调函数，用于处理数据 (callBack)
+        dataObj.setContent( data );
+        dataObj.setIndex( util.lineCount );
+        if( p->enabled() && p->processData( &dataObj ) ) {  // 这里的 processData 是回调函数，用于处理数据 (callBack)
             break;
         }
     }

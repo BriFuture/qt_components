@@ -93,7 +93,6 @@ protected slots:
 protected:
     void init(const QString &name);
 
-
     QThread           *m_subThread = Q_NULLPTR;
     AbstractComm      *m_abstractComm = Q_NULLPTR;
     CommState m_state;

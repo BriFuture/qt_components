@@ -12,6 +12,8 @@
 <div class="toc">
 <h3><a name="toc">Contents</a></h3>
 <ul>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
 <li class="level1"><a href="#details">Detailed Description</a></li>
 </ul>
 </div>
@@ -24,10 +26,28 @@
 <tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="abstractcomm.html">AbstractComm</a></td></tr></table></div><ul>
 <li><a href="commnetwork-members.html">List of all members, including inherited members</a></li>
 </ul>
-<h3>Additional Inherited Members</h3>
+<a name="properties"></a>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn"><b><a href="commnetwork.html#host-prop">host</a></b> : const QString</li>
+<li class="fn"><b><a href="commnetwork.html#port-prop">port</a></b> : const int</li>
+<li class="fn"><b><a href="commnetwork.html#remoteId-prop">remoteId</a></b> : const int</li>
+</ul>
 <ul>
 <li class="fn">1 property inherited from <a href="abstractcomm.html#properties">AbstractComm</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="commnetwork.html#host-prop">host</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qint16 </td><td class="memItemRight bottomAlign"><b><a href="commnetwork.html#port-prop">port</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="commnetwork.html#remoteId-prop">remoteId</a></b>() const</td></tr>
+</table></div>
+<ul>
 <li class="fn">4 public functions inherited from <a href="abstractcomm.html#public-functions">AbstractComm</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
 <li class="fn">5 public slots inherited from <a href="abstractcomm.html#public-slots">AbstractComm</a></li>
 <li class="fn">5 signals inherited from <a href="abstractcomm.html#signals">AbstractComm</a></li>
 <li class="fn">2 protected functions inherited from <a href="abstractcomm.html#protected-functions">AbstractComm</a></li>
@@ -42,5 +62,29 @@
 <p>与其他连接方式不同，该方式使用 TcpSocket 连接到远程服务器中（而不是常用的串口）， 但由于 TcpSocket 继承自 QIODevice，因此实现方式与串口的实现类大同小异</p>
 </div>
 <!-- @@@CommNetwork -->
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$host-prop$$$host -->
+<h3 class="fn" id="host-prop"><a name="host-prop"></a><span class="name">host</span> : const <span class="type">QString</span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> QString </td><td class="memItemRight bottomAlign"><span class="name"><b>host</b></span>() const</td></tr>
+</table></div>
+<!-- @@@host -->
+<!-- $$$port-prop$$$port -->
+<h3 class="fn" id="port-prop"><a name="port-prop"></a><span class="name">port</span> : const <span class="type">int</span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> qint16 </td><td class="memItemRight bottomAlign"><span class="name"><b>port</b></span>() const</td></tr>
+</table></div>
+<!-- @@@port -->
+<!-- $$$remoteId-prop$$$remoteId -->
+<h3 class="fn" id="remoteId-prop"><a name="remoteId-prop"></a><span class="name">remoteId</span> : const <span class="type">int</span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> int </td><td class="memItemRight bottomAlign"><span class="name"><b>remoteId</b></span>() const</td></tr>
+</table></div>
+<!-- @@@remoteId -->
+</div>
 </div> </div></body>
 </html>

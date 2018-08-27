@@ -83,9 +83,9 @@ void VirtualCom::setCommProperty(const QString &key, const QVariant &value) {
 void VirtualCom::onRead() {
     QByteArray rawData;
     if( index == 0 ) {
-        rawData = "$DATA, ";
+        rawData = "$ICMDATA, ";
     }
-    else if( index < 9 ) {
+    else if( index < 10 ) {
         rawData = QString::number( - rand() % 50 + 80 * sin( (m_counter + index) * 3.1415 / 180 ) * ( index % 2 == 0 ? 1 : -1 ) ).toLatin1().append( ", " );
     }
     else {
