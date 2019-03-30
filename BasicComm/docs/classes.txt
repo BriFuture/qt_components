@@ -1,0 +1,42 @@
+AbstractProtocol:
+
+AbstractComm:
+    // 操作
+    init();
+    close();
+    open();
+    setCommProperty();
+    write();
+// signals:
+    void recvRawData(const QByteArray &data);
+    void recvLine(const QByteArray &data);
+    void sendData(const QByteArray &data);
+    void stateChanged(const CommState &serial);
+    void codeMayMessed();
+    
+    // 是否能在半双工模式下工作
+    bool isHalfDuplex();
+
+    // 是否打开
+    bool m_opened = false;
+    // 对应的设备名称
+    QString m_deviceName;
+    // 表明类型：串口，socket 或者 蓝牙
+    QString m_type;
+    // 该通讯器的描述信息
+    QString m_desc;
+    // 用于表明该通讯器的模式
+    QString m_mode;
+
+CommManager：
+    // protocol 相关
+    void addProtocol(AbstractProtocol *p);
+    void delProtocol(AbstractProtocol *p);
+    void removeAllProtocol();
+    AbstractProtocol *protocol(const QString &objectName);
+    const QList<AbstractProtocol *> &protocolList();
+
+    // comm 相关
+
+    AbstractComm *currentComm() const;
+    void resetMode(const QString &mode);

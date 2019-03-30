@@ -15,8 +15,12 @@ A simple, useful communicator aims at simplify communicating between PCs and MCU
 
 **TODO**
 
-* Use a xml that can be used by VirtualCom, Let VirtualCom choose a certain XML to _simulate a Certain MCU_, which means that it can completely response as a real MCU do when receiving a command by caller.
+* ~~Use a xml that can be used by VirtualCom, Let VirtualCom choose a certain XML to _simulate a Certain MCU_, which means that it can completely response as a real MCU do when receiving a command by caller.~~ The functionaty of VirtualCom can be made by a python scripts, see [BriFuture/sim.py](https://gist.github.com/BriFuture/4b3f747cfb91d480d0f1e14629f86450) for more information.
 * Finish Bluetooth feature. In fact, My Computer does not support Bluetooth, it is a little hard for me to add this feature.
+
+#### update
+
+Make a new lib project named `BasicComm` which preformed as the same as basic_communicator but it provide more convenient ways to build other software which would dependent `BasicComm`, read more from [BasicComm](./BasicComm/README.md)
 
 ---------
 
